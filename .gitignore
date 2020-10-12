@@ -1,3 +1,5 @@
 .idea/
 MineSweeper/bin/
 MineSweeper/obj/
+MineSweeper.Tests/bin/
+MineSweeper.Tests/obj/
