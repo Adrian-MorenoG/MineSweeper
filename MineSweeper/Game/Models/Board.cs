@@ -4,9 +4,9 @@ using System.Numerics;
 
 namespace MineSweeper.Game.Models
 {
-    public class Board
+    public sealed class Board
     {
-        private readonly BoardCell[] Cells;
+        public readonly BoardCell[] Cells;
         public readonly int MineNumber;
         public readonly Vector2 Size;
 

@@ -2,10 +2,7 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=210f6505_002Def8f_002D4e18_002Db856_002D181383771e3b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="BoardGeneratorTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::0F502741-2D14-4383-83F8-E007323742A5::.NETCoreApp,Version=v3.1::MineSweeper.Tests.BoardGeneratorTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::0F502741-2D14-4383-83F8-E007323742A5::.NETCoreApp,Version=v3.1::MineSweeper.Tests.ConsoleBoardPrinterTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=60f4ae14_002D497e_002D4fb2_002D923e_002D3f6552c4b0d2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="BoardGeneratorTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::F3837E21-394E-4708-8D2A-5B77E0AC70C0::.NETCoreApp,Version=v3.1::MineSweeper.Tests.BoardGeneratorTest&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+	</wpf:ResourceDictionary>

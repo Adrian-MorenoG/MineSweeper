@@ -1,37 +1,37 @@
 ﻿using System;
+using System.Numerics;
 
 namespace MineSweeper.Game.Models
 {
-    public class BoardCell
+    public enum CellStatus
     {
-        public readonly bool IsMine;
-        public readonly int NeighbouringCells;
-        public readonly int X;
-        public readonly int Y;
+        HIDDEN,
+        VISIBLE,
+        FLAGGED,
+        EXPLODED
+    }
 
-        public BoardCell(int x, int y, bool isMine, int neighbouringCells)
-        {
-            X = x;
-            Y = y;
-            IsMine = isMine;
-            NeighbouringCells = neighbouringCells;
-        }
+    public sealed class BoardCell
+    {
+        public bool IsMine;
+        public int NeighbouringCells;
+        public Vector2 Position;
+        public CellStatus Status;
 
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((BoardCell) obj);
-        }
-        
-        private bool Equals(BoardCell other)
-        {
-            return IsMine == other.IsMine && NeighbouringCells == other.NeighbouringCells && X == other.X && Y == other.Y;
+            if (obj.GetType() != GetType()) return false;
+
+            var other = (BoardCell) obj;
+            return IsMine == other.IsMine && NeighbouringCells == other.NeighbouringCells &&
+                   Position.Equals(other.Position) && Status == other.Status;
         }
 
-        public override int GetHashCode()
+        public override string ToString()
         {
-            return HashCode.Combine(IsMine, NeighbouringCells, X, Y);
+            return IsMine ? "*" : NeighbouringCells.ToString();
         }
     }
 }

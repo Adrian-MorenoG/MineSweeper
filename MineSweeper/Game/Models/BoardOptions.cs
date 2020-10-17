@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace MineSweeper.Game.Models
 {
-    public class BoardOptions
+    public sealed class BoardOptions
     {
         public readonly int Mines;
         public readonly int Seed;
@@ -16,9 +16,6 @@ namespace MineSweeper.Game.Models
             Seed = seed;
         }
 
-        public BoardOptions(Vector2 size, int mines) : this(size, mines, Environment.TickCount)
-        {
-            
-        }
+        public BoardOptions(Vector2 size, int mines) : this(size, mines, Environment.TickCount) { }
     }
 }

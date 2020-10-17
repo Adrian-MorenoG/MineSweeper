@@ -14,9 +14,13 @@ namespace MineSweeper.Game
     {
         public Board GenerateBoard(BoardOptions options)
         {
-            var posRandomGenerator = new Random(options.Seed);
             var maxX = (int) options.Size.X;
             var maxY = (int) options.Size.Y;
+            
+            var cellsNum = (int) (options.Size.X * options.Size.Y);
+            var cells = new BoardCell[cellsNum];
+            
+            var posRandomGenerator = new Random(options.Seed);
             var minePositions = new List<Vector2>();
             while (minePositions.Count < options.Mines)
             {
@@ -30,9 +34,52 @@ namespace MineSweeper.Game
                 }
             }
 
-            var cellsNum = (int) (options.Size.X * options.Size.Y);
-            Console.WriteLine(minePositions);
-            return new Board(options.Mines, options.Size, new BoardCell[cellsNum]);
+            for (var y = 0; y < maxY; y++)
+            {
+                for (var x = 0; x < maxX; x++)
+                {
+                    var position = new Vector2(x, y);
+                    var cell = new BoardCell
+                    {
+                        Position = position,
+                        IsMine = minePositions.Contains(position),
+                        NeighbouringCells = 0,
+                        Status = CellStatus.HIDDEN
+                    };
+                     
+                    cells[x + y * maxX] = cell;
+                }    
+            }
+
+            var validNeighbourPositions = new[]
+            {
+                new Vector2(-1, -1),
+                new Vector2(0, -1),
+                new Vector2(1, -1),
+                new Vector2(-1, 0),
+                new Vector2(1, 0),
+                new Vector2(-1, 1),
+                new Vector2(0, 1),
+                new Vector2(1, 1)
+            };
+
+            foreach (var minePosition in minePositions)
+            {
+                foreach (var validNeighbourPosition in validNeighbourPositions)
+                {
+                    var currentPosition = minePosition + validNeighbourPosition;
+
+                    if (currentPosition.X >= 0
+                        && currentPosition.Y >= 0
+                        && currentPosition.X < maxX
+                        && currentPosition.Y < maxY)
+                    {
+                        cells[(int) (currentPosition.X + currentPosition.Y * maxX)].NeighbouringCells++;
+                    }
+                }
+            }
+
+            return new Board(options.Mines, options.Size, cells);
         }
     }
 }
