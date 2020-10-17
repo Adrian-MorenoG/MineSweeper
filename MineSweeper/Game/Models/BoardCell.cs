@@ -29,9 +29,21 @@ namespace MineSweeper.Game.Models
                    Position.Equals(other.Position) && Status == other.Status;
         }
 
+        /// Prints a representation of this cell.
+        /// Where hidden cells are marked as [ ].
+        /// Where flagged cells are marked as [F].
+        /// Where unhidden cells are marked as [-] if no cells are neighbouring them, or the number of neighbouring cells.
+        /// Where cells that already exploded ar marked as [*].
         public override string ToString()
         {
-            return IsMine ? "*" : NeighbouringCells.ToString();
+            return Status switch
+            {
+                CellStatus.HIDDEN => "█",
+                CellStatus.VISIBLE => NeighbouringCells > 0 ? NeighbouringCells.ToString() : "░",
+                CellStatus.FLAGGED => "F",
+                CellStatus.EXPLODED => "*",
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
     }
 }

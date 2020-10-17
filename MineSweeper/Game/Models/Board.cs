@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Numerics;
 
 namespace MineSweeper.Game.Models
@@ -21,17 +20,8 @@ namespace MineSweeper.Game.Models
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((Board) obj);
-        }
-        
-        private bool Equals(Board other)
-        {
+            var other = (Board) obj;
             return Cells.SequenceEqual(other.Cells) && MineNumber == other.MineNumber && Size.Equals(other.Size);
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Cells, MineNumber, Size);
         }
     }
 }

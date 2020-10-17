@@ -5,11 +5,8 @@ using MineSweeper.Game.Models;
 namespace MineSweeper.Game.Printer
 {
     /// <summary>
-    /// Prints the board in the console in a human readable format like:
-    /// [1][1][1]
-    /// [1][*][1]
-    /// [1][1][1]
-    /// Where * is where a mine is placed, and the number is the neighbouring mines count.
+    /// Prints the board in the console in a human readable format.
+    /// This behaviour is controlled using the cell toString method.
     /// </summary>
     public class ConsoleBoardPrinter: IBoardPrinter
     {

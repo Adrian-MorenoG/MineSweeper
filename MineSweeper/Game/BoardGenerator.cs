@@ -10,6 +10,13 @@ namespace MineSweeper.Game
         Board GenerateBoard(BoardOptions options);
     }
 
+    /// <summary>
+    /// Generates the board model depending on the options passed
+    /// in the [GenerateBoard] method.
+    /// Random mines are placed in the board depending on the seed
+    /// specified in the options class. If the seed is not provided,
+    /// the system time is used.
+    /// </summary>
     public class BoardGenerator : IBoardGenerator
     {
         public Board GenerateBoard(BoardOptions options)
