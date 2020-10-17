@@ -1,4 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System.Numerics;
+using MineSweeper.Game;
+using MineSweeper.Game.Models;
+using NUnit.Framework;
 
 namespace MineSweeper.Tests
 {
@@ -8,16 +11,17 @@ namespace MineSweeper.Tests
         [Test]
         public void TestCorrectBoardSize()
         {
-            var boardOptions = new BoardOptions(10, 10);
+            var boardSize = new Vector2(10, 10);
+            var boardOptions = new BoardOptions(boardSize, 10, 10);
             var board = new BoardGenerator().GenerateBoard(boardOptions);
-            Assert.AreEqual(10 * 10, board.Size);
-            Assert.AreEqual(10, board.SideSize);
+            Assert.AreEqual(boardSize, board.Size);
         }
 
         [Test]
         public void TestCorrectMineNumber()
         {
-            var boardOptions = new BoardOptions(10, 10);
+            var boardSize = new Vector2(10, 10);
+            var boardOptions = new BoardOptions(boardSize, 10);
             var board = new BoardGenerator().GenerateBoard(boardOptions);
             Assert.AreEqual(10, board.MineNumber);
         }
@@ -25,11 +29,12 @@ namespace MineSweeper.Tests
         [Test]
         public void TestSameSeedSameBoard()
         {
-            const long seed = 123456789L;
+            const int seed = 123456789;
 
             var generator = new BoardGenerator();
-            var board = generator.GenerateBoard(new BoardOptions(10, 10, seed));
-            Assert.AreEqual(board, generator.GenerateBoard(new BoardOptions(10, 10, seed)));
+            var boardSize = new Vector2(10, 10);
+            var board = generator.GenerateBoard(new BoardOptions(boardSize, 10, seed));
+            Assert.AreEqual(board, generator.GenerateBoard(new BoardOptions(boardSize, 10, seed)));
         }
     }
 }
