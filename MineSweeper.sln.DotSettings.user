@@ -3,6 +3,7 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::0F502741-2D14-4383-83F8-E007323742A5::.NETCoreApp,Version=v3.1::MineSweeper.Tests.BoardGeneratorTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::0F502741-2D14-4383-83F8-E007323742A5::.NETCoreApp,Version=v3.1::MineSweeper.Tests.ConsoleBoardPrinterTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::0F502741-2D14-4383-83F8-E007323742A5::.NETCoreApp,Version=v3.1::MineSweeper.Tests.SelectCellTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	</wpf:ResourceDictionary>
