@@ -82,12 +82,12 @@ namespace MineSweeper.Tests
                 new BoardCell { Position = new Vector2(0, 0), IsMine = false, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
                 new BoardCell { Position = new Vector2(1, 0), IsMine = false, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
                 new BoardCell { Position = new Vector2(2, 0), IsMine = false, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
-                new BoardCell { Position = new Vector2(0, 2), IsMine = false, NeighbouringCells = 1, Status = CellStatus.HIDDEN},
+                new BoardCell { Position = new Vector2(0, 1), IsMine = false, NeighbouringCells = 1, Status = CellStatus.HIDDEN},
+                new BoardCell { Position = new Vector2(1, 1), IsMine = false, NeighbouringCells = 1, Status = CellStatus.HIDDEN},
+                new BoardCell { Position = new Vector2(2, 1), IsMine = false, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
+                new BoardCell { Position = new Vector2(0, 2), IsMine = true, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
                 new BoardCell { Position = new Vector2(1, 2), IsMine = false, NeighbouringCells = 1, Status = CellStatus.HIDDEN},
                 new BoardCell { Position = new Vector2(2, 2), IsMine = false, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
-                new BoardCell { Position = new Vector2(0, 3), IsMine = true, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
-                new BoardCell { Position = new Vector2(1, 3), IsMine = false, NeighbouringCells = 1, Status = CellStatus.HIDDEN},
-                new BoardCell { Position = new Vector2(2, 3), IsMine = false, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
             };
             
             // [░][░][░]
@@ -98,12 +98,12 @@ namespace MineSweeper.Tests
                 new BoardCell { Position = new Vector2(0, 0), IsMine = false, NeighbouringCells = 0, Status = CellStatus.VISIBLE},
                 new BoardCell { Position = new Vector2(1, 0), IsMine = false, NeighbouringCells = 0, Status = CellStatus.VISIBLE},
                 new BoardCell { Position = new Vector2(2, 0), IsMine = false, NeighbouringCells = 0, Status = CellStatus.VISIBLE},
-                new BoardCell { Position = new Vector2(0, 2), IsMine = false, NeighbouringCells = 1, Status = CellStatus.VISIBLE},
+                new BoardCell { Position = new Vector2(0, 1), IsMine = false, NeighbouringCells = 1, Status = CellStatus.VISIBLE},
+                new BoardCell { Position = new Vector2(1, 1), IsMine = false, NeighbouringCells = 1, Status = CellStatus.VISIBLE},
+                new BoardCell { Position = new Vector2(2, 1), IsMine = false, NeighbouringCells = 0, Status = CellStatus.VISIBLE},
+                new BoardCell { Position = new Vector2(0, 2), IsMine = true, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
                 new BoardCell { Position = new Vector2(1, 2), IsMine = false, NeighbouringCells = 1, Status = CellStatus.VISIBLE},
                 new BoardCell { Position = new Vector2(2, 2), IsMine = false, NeighbouringCells = 0, Status = CellStatus.VISIBLE},
-                new BoardCell { Position = new Vector2(0, 3), IsMine = true, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
-                new BoardCell { Position = new Vector2(1, 3), IsMine = false, NeighbouringCells = 1, Status = CellStatus.VISIBLE},
-                new BoardCell { Position = new Vector2(2, 3), IsMine = false, NeighbouringCells = 0, Status = CellStatus.VISIBLE},
             };
             
             var board = new Board(1, new Vector2(3, 3), initialCells);
@@ -128,12 +128,12 @@ namespace MineSweeper.Tests
                 new BoardCell { Position = new Vector2(0, 0), IsMine = false, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
                 new BoardCell { Position = new Vector2(1, 0), IsMine = false, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
                 new BoardCell { Position = new Vector2(2, 0), IsMine = false, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
-                new BoardCell { Position = new Vector2(0, 2), IsMine = false, NeighbouringCells = 1, Status = CellStatus.HIDDEN},
+                new BoardCell { Position = new Vector2(0, 1), IsMine = false, NeighbouringCells = 1, Status = CellStatus.HIDDEN},
+                new BoardCell { Position = new Vector2(1, 1), IsMine = false, NeighbouringCells = 2, Status = CellStatus.HIDDEN},
+                new BoardCell { Position = new Vector2(2, 1), IsMine = false, NeighbouringCells = 1, Status = CellStatus.HIDDEN},
+                new BoardCell { Position = new Vector2(0, 2), IsMine = true, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
                 new BoardCell { Position = new Vector2(1, 2), IsMine = false, NeighbouringCells = 2, Status = CellStatus.HIDDEN},
-                new BoardCell { Position = new Vector2(2, 2), IsMine = false, NeighbouringCells = 1, Status = CellStatus.HIDDEN},
-                new BoardCell { Position = new Vector2(0, 3), IsMine = true, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
-                new BoardCell { Position = new Vector2(1, 3), IsMine = false, NeighbouringCells = 2, Status = CellStatus.HIDDEN},
-                new BoardCell { Position = new Vector2(2, 3), IsMine = true, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
+                new BoardCell { Position = new Vector2(2, 2), IsMine = true, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
             };
             
             // [░][░][░]
@@ -144,12 +144,12 @@ namespace MineSweeper.Tests
                 new BoardCell { Position = new Vector2(0, 0), IsMine = false, NeighbouringCells = 0, Status = CellStatus.VISIBLE},
                 new BoardCell { Position = new Vector2(1, 0), IsMine = false, NeighbouringCells = 0, Status = CellStatus.VISIBLE},
                 new BoardCell { Position = new Vector2(2, 0), IsMine = false, NeighbouringCells = 0, Status = CellStatus.VISIBLE},
-                new BoardCell { Position = new Vector2(0, 2), IsMine = false, NeighbouringCells = 1, Status = CellStatus.VISIBLE},
-                new BoardCell { Position = new Vector2(1, 2), IsMine = false, NeighbouringCells = 2, Status = CellStatus.VISIBLE},
-                new BoardCell { Position = new Vector2(2, 2), IsMine = false, NeighbouringCells = 1, Status = CellStatus.VISIBLE},
-                new BoardCell { Position = new Vector2(0, 3), IsMine = true, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
-                new BoardCell { Position = new Vector2(1, 3), IsMine = false, NeighbouringCells = 2, Status = CellStatus.HIDDEN},
-                new BoardCell { Position = new Vector2(2, 3), IsMine = true, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
+                new BoardCell { Position = new Vector2(0, 1), IsMine = false, NeighbouringCells = 1, Status = CellStatus.VISIBLE},
+                new BoardCell { Position = new Vector2(1, 1), IsMine = false, NeighbouringCells = 2, Status = CellStatus.VISIBLE},
+                new BoardCell { Position = new Vector2(2, 1), IsMine = false, NeighbouringCells = 1, Status = CellStatus.VISIBLE},
+                new BoardCell { Position = new Vector2(0, 2), IsMine = true, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
+                new BoardCell { Position = new Vector2(1, 2), IsMine = false, NeighbouringCells = 2, Status = CellStatus.HIDDEN},
+                new BoardCell { Position = new Vector2(2, 2), IsMine = true, NeighbouringCells = 0, Status = CellStatus.HIDDEN},
             };
             
             var board = new Board(1, new Vector2(3, 3), initialCells);
