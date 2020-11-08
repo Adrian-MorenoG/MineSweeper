@@ -27,5 +27,10 @@ namespace MineSweeper.Game.Printer
             
             Console.WriteLine(builder.ToString());
         }
+
+        public void PrintBoardWithCoords(Board board)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
