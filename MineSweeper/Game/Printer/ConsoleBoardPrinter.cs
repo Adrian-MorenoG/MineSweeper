@@ -30,7 +30,38 @@ namespace MineSweeper.Game.Printer
 
         public void PrintBoardWithCoords(Board board)
         {
-            throw new NotImplementedException();
+            var builder = new StringBuilder();
+            var maxX = (int) board.Size.X;
+
+            // Build X axis
+            builder.Append("   ");
+            for (var i = 0; i < maxX; i++)
+            {
+                builder.Append($" {i} ");
+            }
+
+            builder.Append("\n   ");
+            for (var i = 0; i < maxX; i++)
+            {
+                builder.Append("---");
+            }
+
+            builder.Append("\n");
+            
+            // Build Y axis and map
+            for (var y = 0; y < board.Size.Y; y++)
+            {
+                builder.Append($"{y}| ");
+                for (var x = 0; x < board.Size.X; x++)
+                {
+                    var cell = board.Cells[x + y * maxX];
+                    builder.Append($"[{cell}]");
+                }    
+                
+                builder.Append("\n");
+            }
+
+            Console.WriteLine(builder.ToString());
         }
     }
 }
