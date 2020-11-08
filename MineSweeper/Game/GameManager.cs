@@ -106,6 +106,11 @@ namespace MineSweeper.Game
             
         }
 
+        public void FlagCell(Board board, Vector2 position)
+        {
+            throw new NotImplementedException();
+        }
+
         private static void ValidatePosition(Board board, Vector2 position)
         {
             if (position.X < 0 || position.X > board.Size.X - 1)
