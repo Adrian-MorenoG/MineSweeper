@@ -10,6 +10,16 @@ namespace MineSweeper.Tests
     [TestFixture]
     public class ConsoleBoardPrinterTest
     {
+        private String _clr;
+
+        [SetUp]
+        public void SetUp()
+        {
+            bool isMac = Environment.OSVersion.Platform.Equals(PlatformID.MacOSX);
+            bool isUnix = Environment.OSVersion.Platform.Equals(PlatformID.Unix);
+            _clr = (isMac || isUnix) ? "" : "\r";
+        }
+        
         /// <summary>
         /// Tests that a map with all the cells hidden is printed
         /// correctly.
@@ -17,9 +27,9 @@ namespace MineSweeper.Tests
         [Test]
         public void TestHiddenMap()
         {
-            const string map = "[█][█][█]\n" + 
-                               "[█][█][█]\n" + 
-                               "[█][█][█]\n\r\n";
+            string map = "[█][█][█]\n" + 
+                         "[█][█][█]\n" + 
+                         $"[█][█][█]\n{_clr}\n";
 
             var cells = new[]
             {
@@ -53,9 +63,9 @@ namespace MineSweeper.Tests
         [Test]
         public void TestCustomMap()
         {
-            const string map = "[░][░][░]\n" +
-                               "[1][1][░]\n" +
-                               "[█][1][░]\n\r\n";
+            string map = "[░][░][░]\n" +
+                         "[1][1][░]\n" +
+                         $"[█][1][░]\n{_clr}\n";
                           
             
             var cells = new[]
@@ -90,9 +100,9 @@ namespace MineSweeper.Tests
         [Test]
         public void TestCustomMap_2()
         {
-            const string map = "[█][█][█]\n" +
-                               "[█][█][█]\n" +
-                               "[*][█][█]\n\r\n";
+            string map = "[█][█][█]\n" + 
+                         "[█][█][█]\n" + 
+                         $"[*][█][█]\n{_clr}\n";
                           
             
             var cells = new[]
@@ -126,9 +136,9 @@ namespace MineSweeper.Tests
         [Test]
         public void TestCustomMap3()
         {
-            const string map = "[F][█][█]\n" +
-                               "[█][█][█]\n" +
-                               "[█][█][F]\n\r\n";
+            string map = "[F][█][█]\n" +
+                         "[█][█][█]\n" + 
+                         $"[█][█][F]\n{_clr}\n";
                           
             
             var cells = new[]
