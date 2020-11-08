@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Numerics;
 using MineSweeper.Game.Models;
 
@@ -82,7 +83,12 @@ namespace MineSweeper.Game.GameManager
                 cell.Status = CellStatus.VISIBLE;
             }
         }
-        
+
+        public void FlagCell(Board board, Vector2 position)
+        {
+            throw new NotImplementedException();
+        }
+
         private static void ValidatePosition(Board board, Vector2 position)
         {
             if (position.X < 0 || position.X > board.Size.X - 1)
