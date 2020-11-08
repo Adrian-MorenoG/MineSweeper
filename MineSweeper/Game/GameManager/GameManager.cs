@@ -52,7 +52,10 @@ namespace MineSweeper.Game.GameManager
                 return;
             }
 
-            cell.Status = CellStatus.VISIBLE;
+            if (cell.Status != CellStatus.FLAGGED)
+            {
+                cell.Status = CellStatus.VISIBLE;
+            }
 
             if (cell.NeighbouringCells > 0)
             {
@@ -86,7 +89,16 @@ namespace MineSweeper.Game.GameManager
 
         public void FlagCell(Board board, Vector2 position)
         {
-            throw new NotImplementedException();
+            ValidatePosition(board, position);
+            var cellPos = position.X + (position.Y * board.Size.X);
+            var cell = board.Cells[(int) cellPos];
+
+            if (cell.Status == CellStatus.VISIBLE)
+            {
+                throw new CellAlreadyVisibleException(cell);
+            }
+
+            cell.Status = CellStatus.FLAGGED;
         }
 
         private static void ValidatePosition(Board board, Vector2 position)
