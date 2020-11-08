@@ -1,5 +1,7 @@
-﻿using System.Numerics;
+﻿using System.Linq;
+using System.Numerics;
 using MineSweeper.Game;
+using MineSweeper.Game.GameManager;
 using MineSweeper.Game.Models;
 using NUnit.Framework;
 
@@ -54,7 +56,7 @@ namespace MineSweeper.Tests
         /// Test that the manager throws an exception when the user selects a cell that contains a mine.
         /// </summary>
         [Test]
-        public void TestMinedCellThrowsException()
+        public void TestMinedCellThrowsExceptionAndShowAllMines()
         {
             var cells = new[]
             {
@@ -64,9 +66,9 @@ namespace MineSweeper.Tests
             var board = new Board(1, new Vector2(1, 1), cells);
             
             Assert.Throws<MineFoundException>(() => gameManager.SelectCell(board, new Vector2(0, 0)));
+            Assert.True(board.Cells.Where(c => c.IsMine).All(c => c.Status == CellStatus.VISIBLE));
         }
 
-                
         /// <summary>
         /// Test that the manager marks the selected cell and all the neighbouring cells recursively that does not have
         /// mined neighbouring cells as Visible.
