@@ -1,40 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using MineSweeper.Game.Models;
 
-namespace MineSweeper.Game
+namespace MineSweeper.Game.GameManager
 {
-    public class CellAlreadyVisibleException: Exception
-    {
-        private BoardCell cell;
-
-        public CellAlreadyVisibleException(BoardCell cell): base($"This cell is already visible")
-        {
-            this.cell = cell;
-        }
-    }
-    
-    public class MineFoundException: Exception
-    {
-        private BoardCell cell;
-
-        public MineFoundException(BoardCell cell): base($"You selected a mined cell")
-        {
-            this.cell = cell;
-        }
-    }
-    
-    public class InvalidBoardPositionException: Exception
-    {
-        private Vector2 position;
-
-        public InvalidBoardPositionException(Vector2 position): base($"This position is invalid: {position}")
-        {
-            this.position = position;
-        }
-    }
-    
     public interface IGameManager
     {
         void SelectCell(Board board, Vector2 position);
@@ -67,7 +37,7 @@ namespace MineSweeper.Game
 
             if (cell.IsMine)
             {
-                cell.Status = CellStatus.EXPLODED;
+                MarkAllMinesAsExploded(board);
                 throw new MineFoundException(cell);
             }
             
@@ -98,12 +68,19 @@ namespace MineSweeper.Game
                     BoardCell neighbourCell = board.Cells[neighborBoardPosition];
                     OpenCell(board, neighbourCell);
                 }
-                catch (InvalidBoardPositionException _)
+                catch (InvalidBoardPositionException)
                 {
                     // Out of board position
                 }
             }
-            
+        }
+
+        private void MarkAllMinesAsExploded(Board board)
+        {
+            foreach (var cell in board.Cells.Where(c => c.IsMine))
+            {
+                cell.Status = CellStatus.VISIBLE;
+            }
         }
 
         public void FlagCell(Board board, Vector2 position)
