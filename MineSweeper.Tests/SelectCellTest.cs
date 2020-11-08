@@ -110,7 +110,7 @@ namespace MineSweeper.Tests
        
             gameManager.SelectCell(board, new Vector2(0, 0));
             
-            Assert.Equals(expectedCells, board.Cells);
+            Assert.AreEqual(expectedCells, board.Cells);
         }
         
         /// <summary>
@@ -156,7 +156,7 @@ namespace MineSweeper.Tests
        
             gameManager.SelectCell(board, new Vector2(0, 0));
             
-            Assert.Equals(expectedCells, board.Cells);
+            Assert.AreEqual(expectedCells, board.Cells);
         }
     }
 }

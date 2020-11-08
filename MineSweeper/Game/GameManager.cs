@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Numerics;
 using MineSweeper.Game.Models;
 
@@ -41,6 +42,18 @@ namespace MineSweeper.Game
 
     public class GameManager: IGameManager
     {
+        private readonly Vector2[] _cellsToOpen =
+        {
+            new Vector2(-1, -1),   // Arriba izquierda
+            new Vector2(0, -1),    // Arriba
+            new Vector2(1, -1),    // Derecha arriba
+            new Vector2(-1, 0),    // Izquierda
+            new Vector2(1, 0),     // Derecha
+            new Vector2(-1, 1),    // Izquierda abajo
+            new Vector2(0, 1),     // Abajo
+            new Vector2(1, 1)      // Derecha abajo
+        };
+        
         public void SelectCell(Board board, Vector2 position)
         {
             ValidatePosition(board, position);
@@ -54,21 +67,42 @@ namespace MineSweeper.Game
 
             if (cell.IsMine)
             {
+                cell.Status = CellStatus.EXPLODED;
                 throw new MineFoundException(cell);
             }
             
-            var validNeighbourPositions = new[]
+            OpenCell(board, cell);
+        }
+
+        private void OpenCell(Board board, BoardCell cell)
+        {
+            if (cell.IsMine || cell.Status != CellStatus.HIDDEN)
             {
-                new Vector2(-1, -1),
-                new Vector2(0, -1),
-                new Vector2(1, -1),
-                new Vector2(-1, 0),
-                new Vector2(1, 0),
-                new Vector2(-1, 1),
-                new Vector2(0, 1),
-                new Vector2(1, 1)
-            };
+                return;
+            }
+
+            cell.Status = CellStatus.VISIBLE;
+
+            if (cell.NeighbouringCells > 0)
+            {
+                return;
+            }
             
+            foreach (var neighbour in _cellsToOpen)
+            {
+                try
+                {
+                    Vector2 pos = cell.Position + neighbour;
+                    ValidatePosition(board, pos);
+                    var neighborBoardPosition = (int) (pos.X + pos.Y * board.Size.X);
+                    BoardCell neighbourCell = board.Cells[neighborBoardPosition];
+                    OpenCell(board, neighbourCell);
+                }
+                catch (InvalidBoardPositionException _)
+                {
+                    // Out of board position
+                }
+            }
             
         }
 
