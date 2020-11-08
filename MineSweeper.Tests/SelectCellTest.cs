@@ -221,8 +221,8 @@ namespace MineSweeper.Tests
             
             var board = new Board(1, new Vector2(3, 3), initialCells);
             
-            gameManager.FlagCell(board, new Vector2(1, 1));
-            gameManager.SelectCell(board, new Vector2(0, 0));
+            _gameManager.FlagCell(board, new Vector2(1, 1));
+            _gameManager.SelectCell(board, new Vector2(0, 0));
             
             Assert.AreEqual(expectedCells, board.Cells);
         }
