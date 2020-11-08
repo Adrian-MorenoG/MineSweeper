@@ -11,7 +11,7 @@ namespace MineSweeper.Game.GameManager
 
     public class GameManager: IGameManager
     {
-        private readonly Vector2[] _cellsToOpen =
+        private static readonly Vector2[] CellsToOpen =
         {
             new Vector2(-1, -1),   // Arriba izquierda
             new Vector2(0, -1),    // Arriba
@@ -26,6 +26,7 @@ namespace MineSweeper.Game.GameManager
         public void SelectCell(Board board, Vector2 position)
         {
             ValidatePosition(board, position);
+            
             var cellPos = position.X + (position.Y * board.Size.X);
             var cell = board.Cells[(int) cellPos];
 
@@ -36,7 +37,7 @@ namespace MineSweeper.Game.GameManager
 
             if (cell.IsMine)
             {
-                MarkAllMinesAsExploded(board);
+                MarkAllMinesAsVisible(board);
                 throw new MineFoundException(cell);
             }
             
@@ -57,7 +58,7 @@ namespace MineSweeper.Game.GameManager
                 return;
             }
             
-            foreach (var neighbour in _cellsToOpen)
+            foreach (var neighbour in CellsToOpen)
             {
                 try
                 {
@@ -74,7 +75,7 @@ namespace MineSweeper.Game.GameManager
             }
         }
 
-        private void MarkAllMinesAsExploded(Board board)
+        private void MarkAllMinesAsVisible(Board board)
         {
             foreach (var cell in board.Cells.Where(c => c.IsMine))
             {
