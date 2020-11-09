@@ -97,7 +97,7 @@ namespace MineSweeper.Game.BoardManager
         {
             foreach (var cell in board.Cells.Where(c => c.IsMine))
             {
-                cell.Status = CellStatus.VISIBLE;
+                cell.Status = CellStatus.EXPLODED;
             }
         }
 
