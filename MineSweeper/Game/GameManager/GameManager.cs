@@ -25,7 +25,7 @@ namespace MineSweeper.Game.GameManager
 
         private bool _gameFinished;
         private Board _board;
-        private string _menuOptions;
+        private readonly string _menuOptions;
 
         public GameManager(
             IBoardPrinter boardPrinter, 
@@ -76,7 +76,7 @@ namespace MineSweeper.Game.GameManager
                     // Process the action
                     ProcessAction(action);
                 }
-                catch (MineFoundException e)
+                catch (MineFoundException)
                 {
                     _gameFinished = true;
                     
@@ -86,7 +86,7 @@ namespace MineSweeper.Game.GameManager
                     // Print the board
                     _boardPrinter.PrintBoardWithCoords(_board);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     // MineSweeperConsole.WriteLine($"ERROR: {e.Message}");
                 }
@@ -114,10 +114,6 @@ namespace MineSweeper.Game.GameManager
                     break;
                 case FlagCellAction flagCellAction:
                     _boardManager.FlagCell(_board, flagCellAction.CellPosition);
-                    break;
-                case RestartGameAction _:
-                    _gameFinished = true;
-                    MineSweeperConsole.WriteLine("GAME RESTARTED");
                     break;
             }
         }

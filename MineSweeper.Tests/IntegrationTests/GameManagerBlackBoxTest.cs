@@ -67,5 +67,113 @@ namespace MineSweeper.Tests.IntegrationTests
             Assert.AreEqual(expected, output.ToString().Replace("\r", ""));
             Assert.False(_gameManager.IsRunning());
         }
+
+        [Test]
+        public void TestExitGame()
+        {
+            /*
+              [1][1][░][░][░]
+              [*][1][░][1][1]
+              [1][1][░][1][*]
+              [░][░][░][2][2]
+              [░][░][░][1][*]
+            */
+            
+            // EXPECTED:
+            var expected = File.ReadAllText("game_manager_output_2.txt").Replace("\r", "");
+            var boardOptions = new BoardOptions(new Vector2(5, 5), 3, 170023000);
+
+            // All the commands that the user will send.
+            var stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("S 0 0");
+            stringBuilder.AppendLine("S 1 0");
+            stringBuilder.AppendLine("S 2 0");
+            stringBuilder.AppendLine("F 0 1");
+            stringBuilder.AppendLine("E");
+
+            var input = new StringReader(stringBuilder.ToString());
+            
+            // All the output that the console prints.
+            var output = new StringWriter();
+            var mockedConsole = new MockConsole(input, output);
+            MineSweeperConsole.SetConsoleWrapper(mockedConsole);
+            
+            _gameManager.Start(boardOptions);
+            
+            Console.WriteLine(output.ToString().Replace("\r", ""));
+            
+            Assert.AreEqual(expected, output.ToString().Replace("\r", ""));
+            Assert.False(_gameManager.IsRunning());
+        }
+        
+        [Test]
+        public void TestSelectMine()
+        {
+            /*
+              [1][1][░][░][░]
+              [*][1][░][1][1]
+              [1][1][░][1][*]
+              [░][░][░][2][2]
+              [░][░][░][1][*]
+            */
+            
+            // EXPECTED:
+            var expected = File.ReadAllText("game_manager_output_3.txt").Replace("\r", "");
+            var boardOptions = new BoardOptions(new Vector2(5, 5), 3, 170023000);
+
+            // All the commands that the user will send.
+            var stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("S 0 1");
+ 
+            var input = new StringReader(stringBuilder.ToString());
+            
+            // All the output that the console prints.
+            var output = new StringWriter();
+            var mockedConsole = new MockConsole(input, output);
+            MineSweeperConsole.SetConsoleWrapper(mockedConsole);
+            
+            _gameManager.Start(boardOptions);
+            
+            Console.WriteLine(output.ToString().Replace("\r", ""));
+            
+            Assert.AreEqual(expected, output.ToString().Replace("\r", ""));
+            Assert.False(_gameManager.IsRunning());
+        }
+        
+        [Test]
+        public void TestSelectAlreadyVisibleCell()
+        {
+            /*
+              [1][1][░][░][░]
+              [*][1][░][1][1]
+              [1][1][░][1][*]
+              [░][░][░][2][2]
+              [░][░][░][1][*]
+            */
+            
+            // EXPECTED:
+            var expected = File.ReadAllText("game_manager_output_4.txt").Replace("\r", "");
+            var boardOptions = new BoardOptions(new Vector2(5, 5), 3, 170023000);
+
+            // All the commands that the user will send.
+            var stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("S 0 0");
+            stringBuilder.AppendLine("S 0 0");
+            stringBuilder.AppendLine("E");
+ 
+            var input = new StringReader(stringBuilder.ToString());
+            
+            // All the output that the console prints.
+            var output = new StringWriter();
+            var mockedConsole = new MockConsole(input, output);
+            MineSweeperConsole.SetConsoleWrapper(mockedConsole);
+            
+            _gameManager.Start(boardOptions);
+            
+            Console.WriteLine(output.ToString().Replace("\r", ""));
+            
+            Assert.AreEqual(expected, output.ToString().Replace("\r", ""));
+            Assert.False(_gameManager.IsRunning());
+        }
     }
 }

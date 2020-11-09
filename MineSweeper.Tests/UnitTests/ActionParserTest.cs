@@ -33,6 +33,14 @@ namespace MineSweeper.Tests.UnitTests
         }
         
         [Test]
+        public void TestInvalidKeyThrowsInvalidActionException()
+        {
+            const string input = "U";
+            
+            Assert.Throws<InvalidActionException>(() => _actionParser.ParseAction(input));
+        }
+        
+        [Test]
         public void TestNullInputThrowsInvalidActionException()
         {
             const string input = null;

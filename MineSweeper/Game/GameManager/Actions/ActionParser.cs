@@ -23,13 +23,17 @@ namespace MineSweeper.Game.GameManager.Actions
             
             var parts = input.Split(" ");
 
-            return parts[0] switch
+            switch(parts[0])
             {
-                "S" => ParseSelectCellAction(parts),
-                "F" => ParseFlagCellAction(parts),
-                "E" => ParseFinishGameAction(parts),
-                "R" => ParseRestartGameAction(parts),
-                _ => throw new InvalidActionException()
+                case "S":
+                    return ParseSelectCellAction(parts);
+                case "F":
+                    return ParseFlagCellAction(parts);
+                case "E":
+                    return ParseFinishGameAction(parts);
+                case "R":
+                    return ParseRestartGameAction(parts);
+                default: throw new InvalidActionException();
             };
         }
 
