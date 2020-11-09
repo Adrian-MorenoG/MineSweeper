@@ -1,6 +1,6 @@
 ﻿namespace MineSweeper.Game.GameManager.Actions
 {
-    class FinishGameAction: Action
+    public class FinishGameAction: Action
     {
         
     }

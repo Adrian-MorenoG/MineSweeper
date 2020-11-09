@@ -111,5 +111,23 @@ namespace MineSweeper.Tests
             
             Assert.Throws<ArgumentException>(() => _actionParser.ParseAction(input));
         }
+        
+        [Test]
+        public void TestFinishGameParsedCorrectly()
+        {
+            const string input = "E";
+            
+            var action = _actionParser.ParseAction(input);
+            
+            Assert.IsInstanceOf<FinishGameAction>(action);
+        }
+        
+        [Test]
+        public void TestFinishGameParsedICorrectly()
+        {
+            const string input = "E 5";
+            
+            Assert.Throws<ArgumentException>(() => _actionParser.ParseAction(input));
+        }
     }
 }
