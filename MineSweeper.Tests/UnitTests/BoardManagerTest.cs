@@ -1,11 +1,10 @@
 ﻿using System.Linq;
 using System.Numerics;
 using MineSweeper.Game.BoardManager;
-using MineSweeper.Game.GameManager;
 using MineSweeper.Game.Models;
 using NUnit.Framework;
 
-namespace MineSweeper.Tests
+namespace MineSweeper.Tests.UnitTests
 {
     [TestFixture]
     public class SelectCellTest
@@ -67,7 +66,7 @@ namespace MineSweeper.Tests
             var board = new Board(1, new Vector2(1, 1), cells);
             
             Assert.Throws<MineFoundException>(() => _boardManager.SelectCell(board, new Vector2(0, 0)));
-            Assert.True(board.Cells.Where(c => c.IsMine).All(c => c.Status == CellStatus.VISIBLE));
+            Assert.True(board.Cells.Where(c => c.IsMine).All(c => c.Status == CellStatus.EXPLODED));
         }
         
         /// <summary>
@@ -87,7 +86,7 @@ namespace MineSweeper.Tests
             var board = new Board(1, new Vector2(3, 1), cells);
             
             Assert.Throws<MineFoundException>(() => _boardManager.SelectCell(board, new Vector2(0, 0)));
-            Assert.True(board.Cells.Where(c => c.IsMine).All(c => c.Status == CellStatus.VISIBLE));
+            Assert.True(board.Cells.Where(c => c.IsMine).All(c => c.Status == CellStatus.EXPLODED));
         }
 
         /// <summary>

@@ -1,8 +1,7 @@
 ﻿using System.IO;
-using System.Numerics;
 using MineSweeper.Game.Printer;
 
-namespace MineSweeper.Tests
+namespace MineSweeper.Tests.Mocks
 {
     /// <summary>
     /// Mocked console that writes and reads from custom provided string readers.
@@ -29,19 +28,9 @@ namespace MineSweeper.Tests
             return _input.ReadLine();
         }
 
-        public Vector2 GetCursorPosition()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void SetCursorPosition(Vector2 pos)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public void Clear()
         {
-            throw new System.NotImplementedException();
+            _output.Flush();
         }
     }
 }

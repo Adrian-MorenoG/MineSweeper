@@ -3,7 +3,7 @@ using System.Numerics;
 using MineSweeper.Game.GameManager.Actions;
 using NUnit.Framework;
 
-namespace MineSweeper.Tests
+namespace MineSweeper.Tests.UnitTests
 {
     [TestFixture]
     public class ActionParserTest

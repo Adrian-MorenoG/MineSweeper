@@ -5,7 +5,7 @@ using MineSweeper.Game.Models;
 using MineSweeper.Game.Printer;
 using NUnit.Framework;
 
-namespace MineSweeper.Tests
+namespace MineSweeper.Tests.UnitTests
 {
     [TestFixture]
     public class BoardGeneratorTest

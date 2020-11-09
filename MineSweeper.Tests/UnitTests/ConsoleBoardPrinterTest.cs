@@ -3,9 +3,10 @@ using System.IO;
 using System.Numerics;
 using MineSweeper.Game.Models;
 using MineSweeper.Game.Printer;
+using MineSweeper.Tests.Mocks;
 using NUnit.Framework;
 
-namespace MineSweeper.Tests
+namespace MineSweeper.Tests.UnitTests
 {
     [TestFixture]
     public class ConsoleBoardPrinterTest

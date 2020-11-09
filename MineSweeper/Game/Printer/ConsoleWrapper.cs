@@ -7,10 +7,6 @@ namespace MineSweeper.Game.Printer
     {
         void WriteLine(string value);
         string ReadLine();
-
-        public Vector2 GetCursorPosition();
-        
-        public void SetCursorPosition(Vector2 pos);
         void Clear();
     }
 
@@ -25,17 +21,7 @@ namespace MineSweeper.Game.Printer
         {
             return Console.ReadLine();
         }
-
-        public Vector2 GetCursorPosition()
-        {
-            return new Vector2(Console.CursorLeft, Console.CursorTop);
-        }
-
-        public void SetCursorPosition(Vector2 pos)
-        {
-            Console.SetCursorPosition((int) pos.X, (int) pos.Y);
-        }
-
+        
         public void Clear()
         {
             Console.Clear();
@@ -61,16 +47,6 @@ namespace MineSweeper.Game.Printer
         public static void SetConsoleWrapper(IConsoleWrapper consoleWrapper)
         {
             _consoleWrapper = consoleWrapper;
-        }
-
-        public static Vector2 GetCursorPosition()
-        {
-            return _consoleWrapper.GetCursorPosition();
-        }
-
-        public static void SetCursorPosition(Vector2 pos)
-        {
-            _consoleWrapper.SetCursorPosition(pos);
         }
 
         public static void Clear()

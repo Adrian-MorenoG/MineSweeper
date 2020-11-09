@@ -16,4 +16,10 @@
       <ProjectReference Include="..\MineSweeper\MineSweeper.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="game_manager_output_1.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
