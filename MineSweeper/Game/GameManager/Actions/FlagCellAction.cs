@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace MineSweeper.Game.GameManager
+namespace MineSweeper.Game.GameManager.Actions
 {
     class FlagCellAction: Action
     {

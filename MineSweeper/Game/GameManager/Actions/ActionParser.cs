@@ -5,7 +5,7 @@
         Action ParseAction(string input);
     }
 
-    class ActionParser: IActionParser 
+    public class ActionParser: IActionParser 
     {
         public Action ParseAction(string input)
         {

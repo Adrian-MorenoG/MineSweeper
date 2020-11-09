@@ -1,6 +1,6 @@
-﻿namespace MineSweeper.Game.GameManager
+﻿namespace MineSweeper.Game.GameManager.Actions
 {
-    abstract class Action
+    public abstract class Action
     {
         
     }

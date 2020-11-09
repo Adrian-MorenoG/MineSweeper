@@ -1,4 +1,4 @@
-﻿namespace MineSweeper.Game.GameManager
+﻿namespace MineSweeper.Game.GameManager.Actions
 {
     class RestartGameAction: Action
     {
