@@ -17,6 +17,30 @@ namespace MineSweeper.Tests
         }
         
         [Test]
+        public void TestEmptyInputThrowsInvalidActionException()
+        {
+            const string input = "";
+            
+            Assert.Throws<InvalidActionException>(() => _actionParser.ParseAction(input));
+        }
+        
+        [Test]
+        public void TestBlankInputThrowsInvalidActionException()
+        {
+            const string input = " ";
+            
+            Assert.Throws<InvalidActionException>(() => _actionParser.ParseAction(input));
+        }
+        
+        [Test]
+        public void TestNullInputThrowsInvalidActionException()
+        {
+            const string input = null;
+            
+            Assert.Throws<InvalidActionException>(() => _actionParser.ParseAction(input));
+        }
+        
+        [Test]
         public void TestSelectCellParsedCorrectly()
         {
             const string input = "S 10 10";
@@ -48,6 +72,42 @@ namespace MineSweeper.Tests
         public void TestSelectCellParsedIncorrectly3()
         {
             const string input = "S 10-10";
+            
+            Assert.Throws<ArgumentException>(() => _actionParser.ParseAction(input));
+        }
+        
+        [Test]
+        public void TestFlagCellParsedCorrectly()
+        {
+            const string input = "F 5 2";
+            
+            var action = _actionParser.ParseAction(input);
+            
+            Assert.IsInstanceOf<FlagCellAction>(action);
+            Assert.AreEqual(new Vector2(5, 2), ((FlagCellAction) action).CellPosition);
+        }
+        
+        [Test]
+        public void TestFlagCellParsedIncorrectly()
+        {
+            const string input = "F 5s 3s";
+            
+            Assert.Throws<ArgumentException>(() => _actionParser.ParseAction(input));
+        }
+        
+        [Test]
+        public void TestFlagCellParsedIncorrectly2()
+        {
+            const string input = "F 10 10 15";
+            
+            Assert.Throws<ArgumentException>(() => _actionParser.ParseAction(input));
+        }
+        
+           
+        [Test]
+        public void TestFlagCellParsedIncorrectly3()
+        {
+            const string input = "F 10-10";
             
             Assert.Throws<ArgumentException>(() => _actionParser.ParseAction(input));
         }
