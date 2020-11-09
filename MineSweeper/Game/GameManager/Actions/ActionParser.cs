@@ -27,6 +27,7 @@ namespace MineSweeper.Game.GameManager.Actions
             {
                 "S" => ParseSelectCellAction(parts),
                 "F" => ParseFlagCellAction(parts),
+                "E" => ParseFinishGameAction(parts),
                 _ => throw new InvalidActionException()
             };
         }
@@ -69,6 +70,16 @@ namespace MineSweeper.Game.GameManager.Actions
             {
                 throw new ArgumentException("Invalid action");
             }
+        }
+        
+        private FinishGameAction ParseFinishGameAction(string[] parts)
+        {
+            if (parts.Length != 1)
+            {
+                throw new ArgumentException("Invalid action");
+            }
+
+            return new FinishGameAction();
         }
     }
 }
