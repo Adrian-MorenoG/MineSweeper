@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Numerics;
 using MineSweeper.Game.Models;
+using MineSweeper.Game.Printer;
 
 namespace MineSweeper.Game
 {
@@ -85,8 +86,8 @@ namespace MineSweeper.Game
                     }
                 }
             }
-
-            return new Board(options.Mines, options.Size, cells);
+      
+            return new Board(options.Mines, options.Size, cells);;
         }
     }
 }

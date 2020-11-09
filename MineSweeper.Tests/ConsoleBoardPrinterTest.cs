@@ -46,12 +46,13 @@ namespace MineSweeper.Tests
             };
             
             var board = new Board(1, new Vector2(3, 3), cells);
-            using var sw = new StringWriter();
-            Console.SetOut(sw);
-            
+            using var output = new StringWriter();
+            using var input = new StringReader("");
+            MineSweeperConsole.SetConsoleWrapper(new MockConsole(input, output));
+
             _printer.PrintBoard(board);
             
-            Assert.AreEqual(map, sw.ToString());
+            Assert.AreEqual(map, output.ToString());
         }
 
         /// <summary>
@@ -81,12 +82,13 @@ namespace MineSweeper.Tests
             };
             
             var board = new Board(1, new Vector2(3, 3), cells);
-            using var sw = new StringWriter();
-            Console.SetOut(sw);
+            using var output = new StringWriter();
+            using var input = new StringReader("");
+            MineSweeperConsole.SetConsoleWrapper(new MockConsole(input, output));
 
             _printer.PrintBoard(board);
             
-            Assert.AreEqual(map, sw.ToString());
+            Assert.AreEqual(map, output.ToString());
         }
         
         /// <summary>
@@ -116,12 +118,13 @@ namespace MineSweeper.Tests
             };
             
             var board = new Board(1, new Vector2(3, 3), cells);
-            using var sw = new StringWriter();
-            Console.SetOut(sw);
+            using var output = new StringWriter();
+            using var input = new StringReader("");
+            MineSweeperConsole.SetConsoleWrapper(new MockConsole(input, output));
             
             _printer.PrintBoard(board);
             
-            Assert.AreEqual(map, sw.ToString());
+            Assert.AreEqual(map, output.ToString());
         }
          
         /// <summary>
@@ -150,12 +153,13 @@ namespace MineSweeper.Tests
             };
             
             var board = new Board(1, new Vector2(3, 3), cells);
-            using var sw = new StringWriter();
-            Console.SetOut(sw);
+            using var output = new StringWriter();
+            using var input = new StringReader("");
+            MineSweeperConsole.SetConsoleWrapper(new MockConsole(input, output));
             
             _printer.PrintBoard(board);
             
-            Assert.AreEqual(map, sw.ToString());
+            Assert.AreEqual(map, output.ToString());
         }
 
         /// <summary>
@@ -185,11 +189,12 @@ namespace MineSweeper.Tests
             };
             
             var board = new Board(1, new Vector2(3, 3), cells);
-            using var sw = new StringWriter();
-            Console.SetOut(sw);
+            using var output = new StringWriter();
+            using var input = new StringReader("");
+            MineSweeperConsole.SetConsoleWrapper(new MockConsole(input, output));
             
             _printer.PrintBoardWithCoords(board);
-            Assert.AreEqual(map, sw.ToString());
+            Assert.AreEqual(map, output.ToString());
         }
         
         /// <summary>
@@ -219,11 +224,12 @@ namespace MineSweeper.Tests
             };
             
             var board = new Board(1, new Vector2(3, 3), cells);
-            using var sw = new StringWriter();
-            Console.SetOut(sw);
+            using var output = new StringWriter();
+            using var input = new StringReader("");
+            MineSweeperConsole.SetConsoleWrapper(new MockConsole(input, output));
             
             _printer.PrintBoardWithCoords(board);
-            Assert.AreEqual(map, sw.ToString());
+            Assert.AreEqual(map, output.ToString());
         }
         
         /// <summary>
@@ -253,11 +259,12 @@ namespace MineSweeper.Tests
             };
             
             var board = new Board(1, new Vector2(3, 3), cells);
-            using var sw = new StringWriter();
-            Console.SetOut(sw);
+            using var output = new StringWriter();
+            using var input = new StringReader("");
+            MineSweeperConsole.SetConsoleWrapper(new MockConsole(input, output));
             
             _printer.PrintBoardWithCoords(board);
-            Assert.AreEqual(map, sw.ToString());
+            Assert.AreEqual(map, output.ToString());
         }
         
         /// <summary>
@@ -287,11 +294,12 @@ namespace MineSweeper.Tests
             };
             
             var board = new Board(1, new Vector2(3, 3), cells);
-            using var sw = new StringWriter();
-            Console.SetOut(sw);
+            using var output = new StringWriter();
+            using var input = new StringReader("");
+            MineSweeperConsole.SetConsoleWrapper(new MockConsole(input, output));
             
             _printer.PrintBoardWithCoords(board);
-            Assert.AreEqual(map, sw.ToString());
+            Assert.AreEqual(map, output.ToString());
         }
     }
 }

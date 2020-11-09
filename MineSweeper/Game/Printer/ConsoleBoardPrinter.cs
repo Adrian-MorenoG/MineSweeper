@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using MineSweeper.Game.Models;
 
 namespace MineSweeper.Game.Printer
@@ -25,7 +24,7 @@ namespace MineSweeper.Game.Printer
                 builder.Append("\n");
             }
             
-            Console.WriteLine(builder.ToString());
+            MineSweeperConsole.WriteLine(builder.ToString());
         }
 
         public void PrintBoardWithCoords(Board board)
@@ -61,7 +60,7 @@ namespace MineSweeper.Game.Printer
                 builder.Append("\n");
             }
 
-            Console.WriteLine(builder.ToString());
+            MineSweeperConsole.WriteLine(builder.ToString());
         }
     }
 }

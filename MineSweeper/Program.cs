@@ -1,4 +1,4 @@
-﻿using System;
+﻿using MineSweeper.Game.Printer;
 
 namespace MineSweeper
 {
@@ -6,7 +6,7 @@ namespace MineSweeper
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            MineSweeperConsole.WriteLine("Hello World!");
         }
     }
 }
