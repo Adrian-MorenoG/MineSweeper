@@ -7,21 +7,31 @@ namespace MineSweeper.Game.GameManager.Actions
     {
         Action ParseAction(string input);
     }
+    
+    public class InvalidActionException : Exception
+    {
+    }
 
     public class ActionParser: IActionParser 
     {
         public Action ParseAction(string input)
         {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                throw new InvalidActionException();
+            }
+            
             var parts = input.Split(" ");
 
             return parts[0] switch
             {
                 "S" => ParseSelectCellAction(parts),
-                _ => throw new ArgumentException("Invalid action")
+                "F" => ParseFlagCellAction(parts),
+                _ => throw new InvalidActionException()
             };
         }
 
-        private Action ParseSelectCellAction(string[] parts)
+        private SelectCellAction ParseSelectCellAction(string[] parts)
         {
             if (parts.Length != 3)
             {
@@ -34,6 +44,26 @@ namespace MineSweeper.Game.GameManager.Actions
                 var y = Convert.ToInt32(parts[2]);
 
                 return new SelectCellAction(new Vector2(x, y));
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentException("Invalid action");
+            }
+        }
+        
+        private FlagCellAction ParseFlagCellAction(string[] parts)
+        {
+            if (parts.Length != 3)
+            {
+                throw new ArgumentException("Invalid action");
+            }
+
+            try
+            {
+                var x = Convert.ToInt32(parts[1]);
+                var y = Convert.ToInt32(parts[2]);
+
+                return new FlagCellAction(new Vector2(x, y));
             }
             catch (Exception e)
             {

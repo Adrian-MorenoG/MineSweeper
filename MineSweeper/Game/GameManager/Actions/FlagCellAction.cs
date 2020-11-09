@@ -2,8 +2,13 @@
 
 namespace MineSweeper.Game.GameManager.Actions
 {
-    class FlagCellAction: Action
+    public class FlagCellAction: Action
     {
-        private readonly Vector2 CellPosition;
+        public readonly Vector2 CellPosition;
+
+        public FlagCellAction(Vector2 cellPosition)
+        {
+            CellPosition = cellPosition;
+        }
     }
 }
