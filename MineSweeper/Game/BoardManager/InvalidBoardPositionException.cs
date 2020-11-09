@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Numerics;
 
-namespace MineSweeper.Game.GameManager
+namespace MineSweeper.Game.BoardManager
 {
     public class InvalidBoardPositionException: Exception
     {

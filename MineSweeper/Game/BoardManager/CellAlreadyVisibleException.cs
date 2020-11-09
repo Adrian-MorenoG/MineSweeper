@@ -1,7 +1,7 @@
 ﻿using System;
 using MineSweeper.Game.Models;
 
-namespace MineSweeper.Game.GameManager
+namespace MineSweeper.Game.BoardManager
 {
     public class CellAlreadyVisibleException: Exception
     {

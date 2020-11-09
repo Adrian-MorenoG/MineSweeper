@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Numerics;
+using MineSweeper.Game.BoardManager;
 using MineSweeper.Game.GameManager;
 using MineSweeper.Game.Models;
 using NUnit.Framework;
@@ -9,12 +10,12 @@ namespace MineSweeper.Tests
     [TestFixture]
     public class SelectCellTest
     {
-        private GameManager _gameManager;
+        private BoardManager _boardManager;
         
         [SetUp]
         public void SetUp()
         {
-            _gameManager = new GameManager();    
+            _boardManager = new BoardManager();    
         }
         
         /// <summary>
@@ -31,7 +32,7 @@ namespace MineSweeper.Tests
             
             var board = new Board(1, new Vector2(1, 1), cells);
             
-            Assert.Throws<InvalidBoardPositionException>(() => _gameManager.SelectCell(board, new Vector2(10, 10)));
+            Assert.Throws<InvalidBoardPositionException>(() => _boardManager.SelectCell(board, new Vector2(10, 10)));
         }
         
         /// <summary>
@@ -48,7 +49,7 @@ namespace MineSweeper.Tests
             
             var board = new Board(1, new Vector2(1, 1), cells);
             
-            Assert.Throws<CellAlreadyVisibleException>(() => _gameManager.SelectCell(board, new Vector2(0, 0)));
+            Assert.Throws<CellAlreadyVisibleException>(() => _boardManager.SelectCell(board, new Vector2(0, 0)));
         }
         
         /// <summary>
@@ -65,7 +66,7 @@ namespace MineSweeper.Tests
             
             var board = new Board(1, new Vector2(1, 1), cells);
             
-            Assert.Throws<MineFoundException>(() => _gameManager.SelectCell(board, new Vector2(0, 0)));
+            Assert.Throws<MineFoundException>(() => _boardManager.SelectCell(board, new Vector2(0, 0)));
             Assert.True(board.Cells.Where(c => c.IsMine).All(c => c.Status == CellStatus.VISIBLE));
         }
         
@@ -85,7 +86,7 @@ namespace MineSweeper.Tests
             
             var board = new Board(1, new Vector2(3, 1), cells);
             
-            Assert.Throws<MineFoundException>(() => _gameManager.SelectCell(board, new Vector2(0, 0)));
+            Assert.Throws<MineFoundException>(() => _boardManager.SelectCell(board, new Vector2(0, 0)));
             Assert.True(board.Cells.Where(c => c.IsMine).All(c => c.Status == CellStatus.VISIBLE));
         }
 
@@ -130,7 +131,7 @@ namespace MineSweeper.Tests
             
             var board = new Board(1, new Vector2(3, 3), initialCells);
        
-            _gameManager.SelectCell(board, new Vector2(0, 0));
+            _boardManager.SelectCell(board, new Vector2(0, 0));
             
             Assert.AreEqual(expectedCells, board.Cells);
         }
@@ -176,7 +177,7 @@ namespace MineSweeper.Tests
             
             var board = new Board(1, new Vector2(3, 3), initialCells);
        
-            _gameManager.SelectCell(board, new Vector2(0, 0));
+            _boardManager.SelectCell(board, new Vector2(0, 0));
             
             Assert.AreEqual(expectedCells, board.Cells);
         }
@@ -221,8 +222,8 @@ namespace MineSweeper.Tests
             
             var board = new Board(1, new Vector2(3, 3), initialCells);
             
-            _gameManager.FlagCell(board, new Vector2(1, 1));
-            _gameManager.SelectCell(board, new Vector2(0, 0));
+            _boardManager.FlagCell(board, new Vector2(1, 1));
+            _boardManager.SelectCell(board, new Vector2(0, 0));
             
             Assert.AreEqual(expectedCells, board.Cells);
         }
