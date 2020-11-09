@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using MineSweeper.Game.BoardManager;
 using MineSweeper.Game.GameManager.Actions;
@@ -24,6 +25,7 @@ namespace MineSweeper.Game.GameManager
 
         private bool _gameFinished;
         private Board _board;
+        private string _menuOptions;
 
         public GameManager(
             IBoardPrinter boardPrinter, 
@@ -35,6 +37,15 @@ namespace MineSweeper.Game.GameManager
             _boardManager = boardManager;
             _boardGenerator = boardGenerator;
             _actionParser = actionParser;
+
+            _menuOptions = new StringBuilder()
+                .AppendLine("--------------------------")
+                .AppendLine("SELECT AN OPTION:")
+                .AppendLine("S X Y - Select a cell in the x,y position")
+                .AppendLine("F X Y - Flag a cell in the x,y position")
+                .AppendLine("E - Exit the game")
+                .AppendLine()
+                .ToString();
         }
 
         public void Start(BoardOptions boardOptions)
@@ -44,23 +55,40 @@ namespace MineSweeper.Game.GameManager
             
             while (!_gameFinished)
             {
-                MineSweeperConsole.Clear();
-
-                _boardPrinter.PrintBoardWithCoords(_board);
-                MineSweeperConsole.WriteLine("\n\n");
-                MineSweeperConsole.WriteLine("SELECT AN ACTION");
-                MineSweeperConsole.WriteLine("\n\n");
-
-                var input = MineSweeperConsole.ReadLine();
-                var action = _actionParser.ParseAction(input);
-
                 try
                 {
+                    // Clear the screen
+                    MineSweeperConsole.Clear();
+                    
+                    // Print the board
+                    _boardPrinter.PrintBoardWithCoords(_board);
+
+                    // Print the available options
+                    MineSweeperConsole.WriteLine(_menuOptions);
+
+                    // Get the user input
+                    var input = MineSweeperConsole.ReadLine();
+                    MineSweeperConsole.WriteLine(input);
+
+                    // Parse the action
+                    var action = _actionParser.ParseAction(input);
+
+                    // Process the action
                     ProcessAction(action);
+                }
+                catch (MineFoundException e)
+                {
+                    _gameFinished = true;
+                    
+                    // Clear the screen
+                    MineSweeperConsole.Clear();
+
+                    // Print the board
+                    _boardPrinter.PrintBoardWithCoords(_board);
                 }
                 catch (Exception e)
                 {
-                    // ignored
+                    // MineSweeperConsole.WriteLine($"ERROR: {e.Message}");
                 }
             }
         }
@@ -71,7 +99,6 @@ namespace MineSweeper.Game.GameManager
             {
                 case FinishGameAction _:
                     _gameFinished = true;
-                    MineSweeperConsole.WriteLine("GAME FINISHED");
                     break;
                 case SelectCellAction selectCellAction:
                     _boardManager.SelectCell(_board, selectCellAction.CellPosition);

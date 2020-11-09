@@ -62,6 +62,8 @@ namespace MineSweeper.Tests.IntegrationTests
             
             _gameManager.Start(boardOptions);
             
+            Console.WriteLine(output.ToString().Replace("\r", ""));
+            
             Assert.AreEqual(expected, output.ToString().Replace("\r", ""));
             Assert.False(_gameManager.IsRunning());
         }
