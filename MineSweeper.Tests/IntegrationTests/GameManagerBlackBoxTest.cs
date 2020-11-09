@@ -29,9 +29,8 @@ namespace MineSweeper.Tests.IntegrationTests
         }
 
         [Test]
-        public void TestGameLoop()
+        public void TestGameLoop1()
         {
-            // SEED: 170023000
             /*
               [1][1][░][░][░]
               [*][1][░][1][1]
