@@ -17,7 +17,7 @@ namespace MineSweeper
             var boardGenerator = new BoardGenerator();
             var actionParser = new ActionParser();
             var gameManager = new GameManager(boardPrinter, boardManager, boardGenerator, actionParser);
-            var boardOptions = new BoardOptions(new Vector2(5, 5), 3, 170023000);
+            var boardOptions = new BoardOptions(new Vector2(5, 5), 5);
             gameManager.Start(boardOptions);
         }
     }
