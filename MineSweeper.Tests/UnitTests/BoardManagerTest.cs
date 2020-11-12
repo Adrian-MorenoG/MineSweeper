@@ -20,6 +20,7 @@ namespace MineSweeper.Tests.UnitTests
         /// <summary>
         /// Test that the manager throws an exception when the user tries to select an invalid
         /// position inside the board.
+        /// Valid position is >= 0 && < board size.
         /// </summary>
         [Test]
         public void TestInvalidPositionThrowsException()
@@ -31,9 +32,11 @@ namespace MineSweeper.Tests.UnitTests
             
             var board = new Board(1, new Vector2(1, 1), cells);
             
-            Assert.Throws<InvalidBoardPositionException>(() => _boardManager.SelectCell(board, new Vector2(10, 10)));
+            Assert.Throws<InvalidBoardPositionException>(() => _boardManager.SelectCell(board, new Vector2(1, 1)));
+            Assert.Throws<InvalidBoardPositionException>(() => _boardManager.SelectCell(board, new Vector2(-1, -1)));
+            
         }
-        
+
         /// <summary>
         /// Test that the manager throws an exception when the user tries to select an already visible
         /// cell.

@@ -15,7 +15,7 @@ namespace MineSweeper.Tests.UnitTests
         {
             _actionParser = new ActionParser();    
         }
-        
+
         [Test]
         public void TestEmptyInputThrowsInvalidActionException()
         {
