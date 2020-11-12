@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace MineSweeper.Tests.UnitTests
 {
     [TestFixture]
-    public class SelectCellTest
+    public class BoardManagerTest
     {
         private BoardManager _boardManager;
         
@@ -34,7 +34,6 @@ namespace MineSweeper.Tests.UnitTests
             
             Assert.Throws<InvalidBoardPositionException>(() => _boardManager.SelectCell(board, new Vector2(1, 1)));
             Assert.Throws<InvalidBoardPositionException>(() => _boardManager.SelectCell(board, new Vector2(-1, -1)));
-            
         }
 
         /// <summary>
@@ -227,6 +226,25 @@ namespace MineSweeper.Tests.UnitTests
             _boardManager.FlagCell(board, new Vector2(1, 1));
             
             Assert.AreEqual(expectedCells, board.Cells);
+        }
+        
+        /// <summary>
+        /// Test that the manager throws an exception when the user tries to select an invalid
+        /// position inside the board.
+        /// Valid position is >= 0 && < board size.
+        /// </summary>
+        [Test]
+        public void TestFlagCellInvalidPositionThrowsException()
+        {
+            var cells = new[]
+            {
+                new BoardCell { Position = new Vector2(0, 0), IsMine = false, NeighbouringCells = 0, Status = CellStatus.VISIBLE},
+            };
+            
+            var board = new Board(1, new Vector2(1, 1), cells);
+            
+            Assert.Throws<InvalidBoardPositionException>(() => _boardManager.FlagCell(board, new Vector2(1, 1)));
+            Assert.Throws<InvalidBoardPositionException>(() => _boardManager.FlagCell(board, new Vector2(-1, -1)));
         }
         
         /// <summary>

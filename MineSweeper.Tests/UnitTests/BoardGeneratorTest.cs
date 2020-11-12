@@ -58,9 +58,6 @@ namespace MineSweeper.Tests.UnitTests
             var boardSize = new Vector2(20, 20);
             
             var board = _boardGenerator.GenerateBoard(new BoardOptions(boardSize, mines));
-
-            var boardPrinter = new ConsoleBoardPrinter();
-            boardPrinter.PrintBoard(board);
             
             var minesFound = board.Cells.Count(boardCell => boardCell.IsMine);
             Assert.AreEqual(mines, minesFound);

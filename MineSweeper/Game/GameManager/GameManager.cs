@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using MineSweeper.Game.BoardManager;
 using MineSweeper.Game.GameManager.Actions;
 using MineSweeper.Game.Models;
