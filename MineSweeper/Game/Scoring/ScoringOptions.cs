@@ -5,9 +5,9 @@ namespace MineSweeper.Game.Scoring
 {
     public sealed class ScoringOptions
     {
-        protected GameManager.GameManager _gameManager;
-        protected User.User _user;
-        protected Board _board;
+        private GameManager.GameManager _gameManager;
+        private User.User _user;
+        private Board _board;
         
         public ScoringOptions(Board board, User.User user, GameManager.GameManager gameManager)
         {
