@@ -18,8 +18,12 @@ namespace MineSweeper.Game.Scoring
 
         public string generateRow()
         {
-            // UserName { BoardSize: Y*Z; #Mines: X; Win: true/false; Time: Seconds }
-            throw new NotImplementedException();
+            // UserName [BoardSize: Y*Z; #Mines: X; Win: true/false; Time: Seconds]
+            return $"{_user.GetName()} " +
+                   $"[BoardSize: {_board.Size.X}*{_board.Size.Y}; " +
+                   $"#Mines: {_board.MineNumber}; " +
+                   $"Win: {_gameManager.UserWin()}; " +
+                   $"Time: {_gameManager.GetElapsedTime()}]";
         }
     }
 }

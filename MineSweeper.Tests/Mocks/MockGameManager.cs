@@ -1,3 +1,4 @@
+using System.Numerics;
 using MineSweeper.Game;
 using MineSweeper.Game.BoardManager;
 using MineSweeper.Game.GameManager;
@@ -9,9 +10,15 @@ namespace MineSweeper.Tests.Mocks
 {
     public class MockGameManager: GameManager
     {
-        public void Start(BoardOptions boardOptions)
+        public override void Start(BoardOptions boardOptions)
         {
-            throw new System.NotImplementedException();
+            BoardCell[] cells = new BoardCell[(int) (boardOptions.Size.X*boardOptions.Size.Y)];
+            for (int i = 0; i < (int) (boardOptions.Size.X * boardOptions.Size.Y); i++)
+            {
+                BoardCell c = new BoardCell { IsMine = false, NeighbouringCells = 0, Position = new Vector2(), Status = CellStatus.VISIBLE };
+                
+            }
+            _board = new Board(boardOptions.Mines, boardOptions.Size, cells);
         }
 
         public void ProcessAction(Action action)
@@ -19,14 +26,14 @@ namespace MineSweeper.Tests.Mocks
             throw new System.NotImplementedException();
         }
 
-        public string GetElapsedTime()
+        public override string GetElapsedTime()
         {
-            throw new System.NotImplementedException();
+            return "10s";
         }
 
-        public bool UserWin()
+        public override bool UserWin()
         {
-            throw new System.NotImplementedException();
+            return true;
         }
 
         public MockGameManager(IBoardPrinter boardPrinter, IBoardManager boardManager, IBoardGenerator boardGenerator, IActionParser actionParser) : base(boardPrinter, boardManager, boardGenerator, actionParser)

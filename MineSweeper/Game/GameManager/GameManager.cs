@@ -25,7 +25,7 @@ namespace MineSweeper.Game.GameManager
         private readonly IActionParser _actionParser;
 
         private bool _gameFinished;
-        private Board _board;
+        protected Board _board;
         private readonly string _menuOptions;
 
         public GameManager(
@@ -49,7 +49,7 @@ namespace MineSweeper.Game.GameManager
                 .ToString();
         }
 
-        public void Start(BoardOptions boardOptions)
+        public virtual void Start(BoardOptions boardOptions)
         {
             _gameFinished = false;
             _board = _boardGenerator.GenerateBoard(boardOptions);
@@ -119,7 +119,7 @@ namespace MineSweeper.Game.GameManager
             }
         }
 
-        public string GetElapsedTime()
+        public virtual string GetElapsedTime()
         {
             throw new NotImplementedException();
         }
@@ -129,7 +129,7 @@ namespace MineSweeper.Game.GameManager
             return !_gameFinished;
         }
 
-        public bool UserWin()
+        public virtual bool UserWin()
         {
             return _board.Cells.Count(c => !c.IsMine && c.Status == CellStatus.VISIBLE) ==
                    _board.Cells.Length - _board.MineNumber;

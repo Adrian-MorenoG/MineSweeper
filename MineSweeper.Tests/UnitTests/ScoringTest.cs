@@ -41,13 +41,13 @@ namespace MineSweeper.Tests.UnitTests
             GameManager gameManager = new MockGameManager(_boardPrinter, _boardManager, _boardGenerator, _actionParser);
             ScoringOptions opt = new ScoringOptions(_boardGenerator.GenerateBoard(options), user, gameManager);
             
-            string expected = "Melon { BoardSize: 3*3; #Mines: 3; Win: true; Time: 10s}";
+            string expected = "Melon [BoardSize: 3*3; #Mines: 3; Win: True; Time: 10s]";
             Assert.AreEqual(expected, opt.generateRow());
             
             options = new BoardOptions(new Vector2(4), 2);
             opt = new ScoringOptions(_boardGenerator.GenerateBoard(options), user, gameManager);
             user.SetName();
-            expected = "Melonazo { BoardSize: 4*4; #Mines: 2; Win: true; Time: 10s}";
+            expected = "Melonazo [BoardSize: 4*4; #Mines: 2; Win: True; Time: 10s]";
             Assert.AreEqual(expected, opt.generateRow());
         }
     }
