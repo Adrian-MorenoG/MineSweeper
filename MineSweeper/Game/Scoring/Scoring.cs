@@ -7,21 +7,30 @@ namespace MineSweeper.Game.Scoring
 {
     public class Scoring
     {
-        private StreamWriter _sw;
         private string _path;
 
         public void Prepare()
         {
             string path = Directory.GetCurrentDirectory();;
             _path = Path.Combine(path, "scoring.txt");
-            _sw = File.Exists(_path) ? File.CreateText(_path) : File.AppendText(_path);
         }
         
         public virtual void AddRow(ScoringOptions row)
         {
-            _sw.WriteLine(row.generateRow());
-            _sw.Flush();
-            _sw.Close();
+            if (!File.Exists(_path))
+            {
+                using (StreamWriter sw = File.CreateText(_path))
+                {
+                    sw.WriteLine(row.generateRow());
+                }
+            }
+            else
+            {
+                using (StreamWriter sw = File.AppendText(_path))
+                {
+                    sw.WriteLine(row.generateRow());
+                }
+            }
         }
 
         public virtual void DeleteRow(int pos)
@@ -36,20 +45,27 @@ namespace MineSweeper.Game.Scoring
             
             File.Delete(_path);
             File.Create(_path);
-            StreamWriter w = File.CreateText(_path);
-            foreach (var l in lines)
+            using (StreamWriter w = File.CreateText(_path))
             {
-                w.WriteLine(l);
+                foreach (var l in lines)
+                {
+                    w.WriteLine(l);
+                }
             }
-            w.Flush();
-            w.Close();
         }
 
         public virtual void PrintScoring()
         {
             if (File.Exists(_path))
             {
-                MineSweeperConsole.WriteLine(File.ReadAllText(_path));
+                using (StreamReader sr = File.OpenText(_path))
+                {
+                    string s;
+                    while ((s = sr.ReadLine()) != null)
+                    {
+                        MineSweeperConsole.WriteLine(s);
+                    }
+                }
             }
         }
 

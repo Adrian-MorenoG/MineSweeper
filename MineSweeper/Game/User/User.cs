@@ -9,6 +9,7 @@ namespace MineSweeper.Game.User
 
         public virtual void SetName()
         {
+            MineSweeperConsole.WriteLine("Introduce tu nombre");
             _name = MineSweeperConsole.ReadLine();
         }
 

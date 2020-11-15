@@ -23,7 +23,7 @@ namespace MineSweeper.Game.GameManager.Actions
             
             var parts = input.Split(" ");
 
-            switch(parts[0])
+            switch(parts[0].ToUpper())
             {
                 case "S":
                     return ParseSelectCellAction(parts);
