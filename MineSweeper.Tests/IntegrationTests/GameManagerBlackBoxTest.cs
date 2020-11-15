@@ -17,6 +17,7 @@ namespace MineSweeper.Tests.IntegrationTests
     public class GameManagerBlackBoxTest
     {
         private GameManager _gameManager;
+        private MockUser2 _user;
 
         [SetUp]
         public void SetUp()
@@ -25,7 +26,8 @@ namespace MineSweeper.Tests.IntegrationTests
             var boardManager = new BoardManager();
             var boardGenerator = new BoardGenerator();
             var actionParser = new ActionParser();
-            _gameManager = new GameManager(boardPrinter, boardManager, boardGenerator, actionParser);
+            _user = new MockUser2();
+            _gameManager = new GameManager(boardPrinter, boardManager, boardGenerator, actionParser, _user);
         }
 
         [Test]
@@ -45,14 +47,7 @@ namespace MineSweeper.Tests.IntegrationTests
 
             // All the commands that the user will send.
             var stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine("S 0 0");
-            stringBuilder.AppendLine("S 1 0");
-            stringBuilder.AppendLine("S 2 0");
-            stringBuilder.AppendLine("F 0 1");
-            stringBuilder.AppendLine("F 4 4");
-            stringBuilder.AppendLine("F 4 2");
-            stringBuilder.AppendLine("S 4 3");
-
+            _user.setActions(new[] {"S 0 0", "S 1 0", "S 2 0", "F 0 1", "F 4 4", "F 4 2", "S 4 3"});
             var input = new StringReader(stringBuilder.ToString());
             
             // All the output that the console prints.
@@ -85,11 +80,7 @@ namespace MineSweeper.Tests.IntegrationTests
 
             // All the commands that the user will send.
             var stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine("S 0 0");
-            stringBuilder.AppendLine("S 1 0");
-            stringBuilder.AppendLine("S 2 0");
-            stringBuilder.AppendLine("F 0 1");
-            stringBuilder.AppendLine("E");
+            _user.setActions(new [] {"S 0 0", "S 1 0", "S 2 0", "F 0 1", "E"});
 
             var input = new StringReader(stringBuilder.ToString());
             
@@ -123,7 +114,7 @@ namespace MineSweeper.Tests.IntegrationTests
 
             // All the commands that the user will send.
             var stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine("S 0 1");
+            _user.setActions(new []{"S 0 1"});
  
             var input = new StringReader(stringBuilder.ToString());
             
@@ -157,9 +148,7 @@ namespace MineSweeper.Tests.IntegrationTests
 
             // All the commands that the user will send.
             var stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine("S 0 0");
-            stringBuilder.AppendLine("S 0 0");
-            stringBuilder.AppendLine("E");
+            _user.setActions(new []{"S 0 0", "S 0 0", "E"});
  
             var input = new StringReader(stringBuilder.ToString());
             

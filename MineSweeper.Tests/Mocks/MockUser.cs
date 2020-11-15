@@ -4,7 +4,7 @@ namespace MineSweeper.Tests.Mocks
 {
     public class MockUser : User
     {
-        private string[] _plays =
+        protected string[] _plays =
         {
             "S 0 0",
             "F 0 1",
@@ -19,7 +19,7 @@ namespace MineSweeper.Tests.Mocks
         };
 
         private int _nameCounter;
-        private int _playCounter;
+        protected int _playCounter;
 
         public MockUser()
         {
@@ -35,6 +35,15 @@ namespace MineSweeper.Tests.Mocks
         public override string MakeAPlay()
         {
             return _plays[_playCounter++];
+        }
+    }
+
+    public class MockUser2 : MockUser
+    {
+        public void setActions(string[] actions)
+        {
+            _plays = actions;
+            _playCounter = 0;
         }
     }
 }

@@ -22,3 +22,5 @@ S 0 1
 3| [█][█][█][█][█]
 4| [█][█][█][█][*]
 
+Melon [BoardSize: 5*5; #Mines: 3; Win: False; Time: 0s]
+

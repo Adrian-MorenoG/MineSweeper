@@ -1,4 +1,5 @@
 using System;
+using MineSweeper.Game.Printer;
 
 namespace MineSweeper.Game.User
 {
@@ -8,12 +9,12 @@ namespace MineSweeper.Game.User
 
         public virtual void SetName()
         {
-            throw new NotImplementedException();
+            _name = MineSweeperConsole.ReadLine();
         }
 
         public virtual string MakeAPlay()
         {
-            throw new NotImplementedException();
+            return MineSweeperConsole.ReadLine();
         }
         
         public string GetName()

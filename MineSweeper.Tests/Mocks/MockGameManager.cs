@@ -5,6 +5,7 @@ using MineSweeper.Game.GameManager;
 using MineSweeper.Game.GameManager.Actions;
 using MineSweeper.Game.Models;
 using MineSweeper.Game.Printer;
+using MineSweeper.Game.User;
 
 namespace MineSweeper.Tests.Mocks
 {
@@ -21,11 +22,6 @@ namespace MineSweeper.Tests.Mocks
             _board = new Board(boardOptions.Mines, boardOptions.Size, cells);
         }
 
-        public void ProcessAction(Action action)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public override string GetElapsedTime()
         {
             return "10s";
@@ -36,7 +32,12 @@ namespace MineSweeper.Tests.Mocks
             return true;
         }
 
-        public MockGameManager(IBoardPrinter boardPrinter, IBoardManager boardManager, IBoardGenerator boardGenerator, IActionParser actionParser) : base(boardPrinter, boardManager, boardGenerator, actionParser)
+        protected override void AddRowToScoring()
+        {
+            // Do nothing
+        }
+
+        public MockGameManager(IBoardPrinter boardPrinter, IBoardManager boardManager, IBoardGenerator boardGenerator, IActionParser actionParser, User user) : base(boardPrinter, boardManager, boardGenerator, actionParser, user)
         {
             
         }

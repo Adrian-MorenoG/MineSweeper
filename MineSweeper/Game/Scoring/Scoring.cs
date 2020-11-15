@@ -10,15 +10,15 @@ namespace MineSweeper.Game.Scoring
         private StreamWriter _sw;
         private string _path;
 
-        private void Prepare()
+        public void Prepare()
         {
-            string path = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string path = Directory.GetCurrentDirectory();;
             _path = Path.Combine(path, "scoring.txt");
+            _sw = File.Exists(_path) ? File.CreateText(_path) : File.AppendText(_path);
         }
         
         public virtual void AddRow(ScoringOptions row)
         {
-            _sw = new StreamWriter(_path);
             _sw.WriteLine(row.generateRow());
             _sw.Flush();
             _sw.Close();

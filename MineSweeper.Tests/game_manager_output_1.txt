@@ -119,3 +119,5 @@ S 4 3
 4| [░][░][░][1][F]
 
 YOU WON
+Melon [BoardSize: 5*5; #Mines: 3; Win: True; Time: 0s]
+

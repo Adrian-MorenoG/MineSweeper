@@ -5,6 +5,7 @@ using MineSweeper.Game.BoardManager;
 using MineSweeper.Game.GameManager.Actions;
 using MineSweeper.Game.Models;
 using MineSweeper.Game.Printer;
+using MineSweeper.Game.Scoring;
 using Action = MineSweeper.Game.GameManager.Actions.Action;
 
 namespace MineSweeper.Game.GameManager
@@ -24,20 +25,28 @@ namespace MineSweeper.Game.GameManager
         private readonly IBoardGenerator _boardGenerator;
         private readonly IActionParser _actionParser;
 
+        private Scoring.Scoring _scoring;
+
         private bool _gameFinished;
         protected Board _board;
         private readonly string _menuOptions;
+
+        private User.User _user;
+        private long _elapsedTime;
 
         public GameManager(
             IBoardPrinter boardPrinter, 
             IBoardManager boardManager, 
             IBoardGenerator boardGenerator,
-            IActionParser actionParser)
+            IActionParser actionParser,
+            User.User user)
         {
             _boardPrinter = boardPrinter;
             _boardManager = boardManager;
             _boardGenerator = boardGenerator;
             _actionParser = actionParser;
+            _user = user;
+            _scoring = new Scoring.Scoring();
 
             _menuOptions = new StringBuilder()
                 .AppendLine("--------------------------")
@@ -53,6 +62,10 @@ namespace MineSweeper.Game.GameManager
         {
             _gameFinished = false;
             _board = _boardGenerator.GenerateBoard(boardOptions);
+            _user.SetName();
+            _scoring.Prepare();
+
+            _elapsedTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             
             while (!_gameFinished)
             {
@@ -68,7 +81,7 @@ namespace MineSweeper.Game.GameManager
                     MineSweeperConsole.WriteLine(_menuOptions);
 
                     // Get the user input
-                    var input = MineSweeperConsole.ReadLine();
+                    var input = _user.MakeAPlay();
                     MineSweeperConsole.WriteLine(input);
 
                     // Parse the action
@@ -86,6 +99,7 @@ namespace MineSweeper.Game.GameManager
 
                     // Print the board
                     _boardPrinter.PrintBoardWithCoords(_board);
+                    AddRowToScoring();
                 }
                 catch (Exception)
                 {
@@ -110,6 +124,7 @@ namespace MineSweeper.Game.GameManager
                         _gameFinished = true;
                         _boardPrinter.PrintBoardWithCoords(_board);
                         MineSweeperConsole.WriteLine("YOU WON");
+                        AddRowToScoring();
                     }
                     
                     break;
@@ -119,9 +134,17 @@ namespace MineSweeper.Game.GameManager
             }
         }
 
+        protected virtual void AddRowToScoring()
+        {
+            _elapsedTime = DateTimeOffset.Now.ToUnixTimeMilliseconds() - _elapsedTime;
+            ScoringOptions options = new ScoringOptions(_board, _user, this);
+            _scoring.AddRow(options);
+            _scoring.PrintScoring();
+        }
+
         public virtual string GetElapsedTime()
         {
-            throw new NotImplementedException();
+            return $"{_elapsedTime/1000}s";
         }
 
         public bool IsRunning()
