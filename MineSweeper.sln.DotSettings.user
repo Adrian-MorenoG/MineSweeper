@@ -1,9 +1,8 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=210f6505_002Def8f_002D4e18_002Db856_002D181383771e3b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="BoardGeneratorTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::0F502741-2D14-4383-83F8-E007323742A5::.NETCoreApp,Version=v3.1::MineSweeper.Tests.BoardGeneratorTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::0F502741-2D14-4383-83F8-E007323742A5::.NETCoreApp,Version=v3.1::MineSweeper.Tests.ConsoleBoardPrinterTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::0F502741-2D14-4383-83F8-E007323742A5::.NETCoreApp,Version=v3.1::MineSweeper.Tests.SelectCellTest&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=210f6505_002Def8f_002D4e18_002Db856_002D181383771e3b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="BoardGeneratorTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::0F502741-2D14-4383-83F8-E007323742A5::.NETCoreApp,Version=v3.1::MineSweeper.Tests.UnitTests.UserTest.SetNameTest&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::0F502741-2D14-4383-83F8-E007323742A5::.NETCoreApp,Version=v3.1::MineSweeper.Tests.UnitTests.UserTest.MakeAPlayTest&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	</wpf:ResourceDictionary>

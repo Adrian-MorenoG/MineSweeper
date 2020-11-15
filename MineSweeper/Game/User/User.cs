@@ -4,14 +4,14 @@ namespace MineSweeper.Game.User
 {
     public class User
     {
-        private string _name;
+        protected string _name;
 
-        public void SetName()
+        public virtual void SetName()
         {
             throw new NotImplementedException();
         }
 
-        public string MakeAPlay()
+        public virtual string MakeAPlay()
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,5 @@
 using MineSweeper.Game.User;
+using MineSweeper.Tests.Mocks;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
@@ -11,20 +12,20 @@ namespace MineSweeper.Tests.UnitTests
         public void SetNameTest()
         {
             string expected = "Melon";
-            User user = new User();
+            User user = new MockUser();
             user.SetName();
-            Assert.Equals(user.GetName(), expected);
+            Assert.AreEqual(user.GetName(), expected);
 
             user.SetName();
             Assert.AreNotEqual(user.GetName(), expected);
             expected = "Melonazo";
-            Assert.Equals(user.GetName(), expected);
+            Assert.AreEqual(user.GetName(), expected);
         }
 
         [Test]
         public void MakeAPlayTest()
         {
-            User user = new User();
+            User user = new MockUser();
             string[] plays =
             {
                 "S 0 0",
@@ -35,7 +36,7 @@ namespace MineSweeper.Tests.UnitTests
 
             foreach (var p in plays)
             {
-                Assert.Equals(user.MakeAPlay(), p);
+                Assert.AreEqual(user.MakeAPlay(), p);
             }
         }
     }
