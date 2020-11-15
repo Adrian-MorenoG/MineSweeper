@@ -5,6 +5,7 @@ using MineSweeper.Game.GameManager;
 using MineSweeper.Game.GameManager.Actions;
 using MineSweeper.Game.Models;
 using MineSweeper.Game.Printer;
+using MineSweeper.Game.Scoring;
 using MineSweeper.Game.User;
 
 namespace MineSweeper.Tests.Mocks
@@ -37,7 +38,7 @@ namespace MineSweeper.Tests.Mocks
             // Do nothing
         }
 
-        public MockGameManager(IBoardPrinter boardPrinter, IBoardManager boardManager, IBoardGenerator boardGenerator, IActionParser actionParser, User user) : base(boardPrinter, boardManager, boardGenerator, actionParser, user)
+        public MockGameManager(IBoardPrinter boardPrinter, IBoardManager boardManager, IBoardGenerator boardGenerator, IActionParser actionParser, User user, Scoring scoring) : base(boardPrinter, boardManager, boardGenerator, actionParser, user, scoring)
         {
             
         }

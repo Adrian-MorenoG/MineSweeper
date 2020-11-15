@@ -27,7 +27,7 @@ namespace MineSweeper.Tests.IntegrationTests
             var boardGenerator = new BoardGenerator();
             var actionParser = new ActionParser();
             _user = new MockUser2();
-            _gameManager = new GameManager(boardPrinter, boardManager, boardGenerator, actionParser, _user);
+            _gameManager = new GameManager(boardPrinter, boardManager, boardGenerator, actionParser, _user, new MockScoring());
         }
 
         [Test]

@@ -5,6 +5,7 @@ using MineSweeper.Game.GameManager;
 using MineSweeper.Game.GameManager.Actions;
 using MineSweeper.Game.Models;
 using MineSweeper.Game.Printer;
+using MineSweeper.Game.Scoring;
 using MineSweeper.Game.User;
 
 namespace MineSweeper
@@ -18,7 +19,8 @@ namespace MineSweeper
             var boardGenerator = new BoardGenerator();
             var actionParser = new ActionParser();
             var user = new User();
-            var gameManager = new GameManager(boardPrinter, boardManager, boardGenerator, actionParser, user);
+            var scoring = new Scoring();
+            var gameManager = new GameManager(boardPrinter, boardManager, boardGenerator, actionParser, user, scoring);
             var boardOptions = new BoardOptions(new Vector2(5, 5), 5);
             gameManager.Start(boardOptions);
         }

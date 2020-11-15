@@ -30,8 +30,8 @@ namespace MineSweeper.Tests.UnitTests
             _boardPrinter = new ConsoleBoardPrinter();
             _boardGenerator = new BoardGenerator();
             _actionParser = new ActionParser();
-            _gameManager = new MockGameManager(_boardPrinter, _boardManager, _boardGenerator, _actionParser, new MockUser());
             _scoring = new MockScoring();
+            _gameManager = new MockGameManager(_boardPrinter, _boardManager, _boardGenerator, _actionParser, new MockUser(), _scoring);
         }
         
         [Test]

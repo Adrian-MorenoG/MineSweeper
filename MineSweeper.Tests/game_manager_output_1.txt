@@ -120,4 +120,3 @@ S 4 3
 
 YOU WON
 Melon [BoardSize: 5*5; #Mines: 3; Win: True; Time: 0s]
-

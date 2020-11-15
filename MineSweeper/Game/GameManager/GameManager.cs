@@ -39,14 +39,15 @@ namespace MineSweeper.Game.GameManager
             IBoardManager boardManager, 
             IBoardGenerator boardGenerator,
             IActionParser actionParser,
-            User.User user)
+            User.User user,
+            Scoring.Scoring scoring)
         {
             _boardPrinter = boardPrinter;
             _boardManager = boardManager;
             _boardGenerator = boardGenerator;
             _actionParser = actionParser;
             _user = user;
-            _scoring = new Scoring.Scoring();
+            _scoring = scoring;
 
             _menuOptions = new StringBuilder()
                 .AppendLine("--------------------------")
