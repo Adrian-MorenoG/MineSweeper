@@ -26,7 +26,23 @@ namespace MineSweeper.Game.Scoring
 
         public virtual void DeleteRow(int pos)
         {
+            var tmp = File.ReadAllLines(_path);
+            var lines = new string[tmp.Length-1];
+            for (int i = 0; i < tmp.Length; i++)
+            {
+                if (i == pos) continue;
+                lines[i] = tmp[i];
+            }
             
+            File.Delete(_path);
+            File.Create(_path);
+            StreamWriter w = File.CreateText(_path);
+            foreach (var l in lines)
+            {
+                w.WriteLine(l);
+            }
+            w.Flush();
+            w.Close();
         }
 
         public virtual void PrintScoring()
