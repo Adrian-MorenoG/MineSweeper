@@ -13,6 +13,8 @@ namespace MineSweeper.Game.GameManager
     {
         public void Start(BoardOptions boardOptions);
         public void ProcessAction(Action action);
+        public string GetElapsedTime();
+        public bool UserWin();
     }
 
     public class GameManager: IGameManager
@@ -103,7 +105,7 @@ namespace MineSweeper.Game.GameManager
                     _boardManager.SelectCell(_board, selectCellAction.CellPosition);
 
                     // All the cells that are not mines has been selected. We WON.
-                    if (_board.Cells.Count(c => !c.IsMine && c.Status == CellStatus.VISIBLE) == _board.Cells.Length - _board.MineNumber)
+                    if (UserWin())
                     {
                         _gameFinished = true;
                         _boardPrinter.PrintBoardWithCoords(_board);
@@ -117,9 +119,20 @@ namespace MineSweeper.Game.GameManager
             }
         }
 
+        public string GetElapsedTime()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool IsRunning()
         {
             return !_gameFinished;
+        }
+
+        public bool UserWin()
+        {
+            return _board.Cells.Count(c => !c.IsMine && c.Status == CellStatus.VISIBLE) ==
+                   _board.Cells.Length - _board.MineNumber;
         }
     }
 }
