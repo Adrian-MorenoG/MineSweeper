@@ -31,7 +31,7 @@ namespace MineSweeper.Tests.UnitTests
             _boardGenerator = new BoardGenerator();
             _actionParser = new ActionParser();
             _gameManager = new MockGameManager(_boardPrinter, _boardManager, _boardGenerator, _actionParser);
-            _scoring = new Scoring();
+            _scoring = new MockScoring();
         }
         
         [Test]
@@ -77,7 +77,7 @@ namespace MineSweeper.Tests.UnitTests
             opt = new ScoringOptions(_boardGenerator.GenerateBoard(options), user, _gameManager);
             _scoring.AddRow(opt);
             
-            Assert.AreEqual(4, _scoring.RowsCounter());
+            Assert.AreEqual(4, _scoring.Length());
         }
 
         [Test]
@@ -94,7 +94,7 @@ namespace MineSweeper.Tests.UnitTests
             _scoring.DeleteRow(0);
             _scoring.DeleteRow(0);
             
-            Assert.AreEqual(0, _scoring.RowsCounter());
+            Assert.AreEqual(0, _scoring.Length());
         }
 
         [Test]
@@ -119,12 +119,12 @@ namespace MineSweeper.Tests.UnitTests
             opt = new ScoringOptions(_boardGenerator.GenerateBoard(options), user, _gameManager);
             _scoring.AddRow(opt);
             
-            Assert.AreEqual(4, _scoring.RowsCounter());
+            Assert.AreEqual(4, _scoring.Length());
             
             string expected = "Melon [BoardSize: 3*3; #Mines: 2; Win: True; Time: 10s]\n" +
                               "Melon [BoardSize: 1*1; #Mines: 1; Win: True; Time: 10s]\n" +
                               "Melon [BoardSize: 5*4; #Mines: 9; Win: True; Time: 10s]\n" +
-                              "Melon [BoardSize: 33*2; #Mines: 8; Win: True; Time: 10s]";
+                              "Melon [BoardSize: 33*1; #Mines: 8; Win: True; Time: 10s]\n";
             
             var output = new StringWriter();
             MineSweeperConsole.SetConsoleWrapper(new MockConsole(new StringReader(""), output));
@@ -135,10 +135,12 @@ namespace MineSweeper.Tests.UnitTests
             _scoring.DeleteRow(0);
             
             expected = "Melon [BoardSize: 5*4; #Mines: 9; Win: True; Time: 10s]\n" +
-                       "Melon [BoardSize: 33*2; #Mines: 8; Win: True; Time: 10s]";
+                       "Melon [BoardSize: 33*1; #Mines: 8; Win: True; Time: 10s]\n";
             
+            output = new StringWriter();
+            MineSweeperConsole.SetConsoleWrapper(new MockConsole(new StringReader(""), output));
             _scoring.PrintScoring();
-            Assert.AreEqual(2, _scoring.RowsCounter());
+            Assert.AreEqual(2, _scoring.Length());
             Assert.AreEqual(expected, output.ToString());
         }
     }

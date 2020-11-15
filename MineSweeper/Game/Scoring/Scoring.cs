@@ -1,40 +1,50 @@
 using System;
 using System.Collections;
+using System.IO;
+using MineSweeper.Game.Printer;
 
 namespace MineSweeper.Game.Scoring
 {
     public class Scoring
     {
-        protected ArrayList Rows;
-        
-        public Scoring()
-        {
-            Rows = new ArrayList();
-        }
-        
+        private StreamWriter _sw;
+        private string _path;
+
         private void Prepare()
         {
-            throw new NotImplementedException();
+            string path = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            _path = Path.Combine(path, "scoring.txt");
         }
         
         public virtual void AddRow(ScoringOptions row)
         {
-            throw new NotImplementedException();
+            _sw = new StreamWriter(_path);
+            _sw.WriteLine(row.generateRow());
+            _sw.Flush();
+            _sw.Close();
         }
 
         public virtual void DeleteRow(int pos)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public void PrintScoring()
+        public virtual void PrintScoring()
         {
-            throw new NotImplementedException();
+            if (File.Exists(_path))
+            {
+                MineSweeperConsole.WriteLine(File.ReadAllText(_path));
+            }
         }
 
-        public int RowsCounter()
+        public virtual int Length()
         {
-            return Rows.Count;
+            if (File.Exists(_path))
+            {
+                return File.ReadAllLines(_path).Length;
+            }
+
+            return 0;
         }
     }
 }
