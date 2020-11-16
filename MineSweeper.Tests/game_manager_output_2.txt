@@ -1,4 +1,5 @@
-﻿    0  1  2  3  4 
+﻿Put your name
+    0  1  2  3  4 
    ---------------
 0| [█][█][█][█][█]
 1| [█][█][█][█][█]
@@ -78,3 +79,7 @@ E - Exit the game
 
 
 E
+
+
+::: SCOREBOARD :::
+Test User [BoardSize: 5*5; #Mines: 3; Win: False; Time: 0s]

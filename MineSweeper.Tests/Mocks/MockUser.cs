@@ -2,9 +2,9 @@ using MineSweeper.Game.User;
 
 namespace MineSweeper.Tests.Mocks
 {
-    public class MockUser : User
+    public class MockUser : IUser
     {
-        protected string[] _plays =
+        private readonly string[] _plays =
         {
             "S 0 0",
             "F 0 1",
@@ -12,38 +12,31 @@ namespace MineSweeper.Tests.Mocks
             "S 2 2"
         };
 
-        private string[] _names =
+        private int _playCounter;
+        private readonly string _name;
+        
+        public MockUser(string name)
         {
-            "Melon",
-            "Melonazo"
-        };
-
-        private int _nameCounter;
-        protected int _playCounter;
-
-        public MockUser()
-        {
-            _nameCounter = 0;
             _playCounter = 0;
+            _name = name;
+
         }
 
-        public override void SetName()
+        public void ReadUserName()
         {
-            _name = _names[_nameCounter++];
+            // Nothing to do.
         }
 
-        public override string MakeAPlay()
+        public string ReadUserAction()
         {
-            return _plays[_playCounter++];
+            var index = _playCounter;
+            _playCounter++;
+            return _plays[index];
         }
-    }
 
-    public class MockUser2 : MockUser
-    {
-        public void setActions(string[] actions)
+        public string GetName()
         {
-            _plays = actions;
-            _playCounter = 0;
+            return _name;
         }
     }
 }

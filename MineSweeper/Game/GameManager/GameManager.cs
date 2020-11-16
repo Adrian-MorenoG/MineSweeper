@@ -14,8 +14,8 @@ namespace MineSweeper.Game.GameManager
     {
         public void Start(BoardOptions boardOptions);
         public void ProcessAction(Action action);
-        public string GetElapsedTime();
-        public bool UserWin();
+
+        public bool IsRunning();
     }
 
     public class GameManager: IGameManager
@@ -24,30 +24,28 @@ namespace MineSweeper.Game.GameManager
         private readonly IBoardPrinter _boardPrinter;
         private readonly IBoardGenerator _boardGenerator;
         private readonly IActionParser _actionParser;
-
-        private Scoring.Scoring _scoring;
-
-        private bool _gameFinished;
-        protected Board _board;
+        private readonly IScoreManager _scoreManager;
         private readonly string _menuOptions;
-
-        private User.User _user;
-        private long _elapsedTime;
+        private readonly User.User _user;
+        
+        private bool _gameFinished;
+        
+        private Board _board;
 
         public GameManager(
             IBoardPrinter boardPrinter, 
             IBoardManager boardManager, 
             IBoardGenerator boardGenerator,
             IActionParser actionParser,
-            User.User user,
-            Scoring.Scoring scoring)
+            IScoreManager scoreManager,
+            User.User user)
         {
             _boardPrinter = boardPrinter;
             _boardManager = boardManager;
             _boardGenerator = boardGenerator;
             _actionParser = actionParser;
+            _scoreManager = scoreManager;
             _user = user;
-            _scoring = scoring;
 
             _menuOptions = new StringBuilder()
                 .AppendLine("--------------------------")
@@ -59,15 +57,14 @@ namespace MineSweeper.Game.GameManager
                 .ToString();
         }
 
-        public virtual void Start(BoardOptions boardOptions)
+        public void Start(BoardOptions boardOptions)
         {
             _gameFinished = false;
             _board = _boardGenerator.GenerateBoard(boardOptions);
-            _user.SetName();
-            _scoring.Prepare();
+            _user.ReadUserName();
 
-            _elapsedTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            
+            var gameStart = DateTime.UtcNow;
+
             while (!_gameFinished)
             {
                 try
@@ -82,7 +79,7 @@ namespace MineSweeper.Game.GameManager
                     MineSweeperConsole.WriteLine(_menuOptions);
 
                     // Get the user input
-                    var input = _user.MakeAPlay();
+                    var input = _user.ReadUserAction();
                     MineSweeperConsole.WriteLine(input);
 
                     // Parse the action
@@ -100,13 +97,18 @@ namespace MineSweeper.Game.GameManager
 
                     // Print the board
                     _boardPrinter.PrintBoardWithCoords(_board);
-                    AddRowToScoring();
+                    MineSweeperConsole.WriteLine("YOU LOOSE");
                 }
                 catch (Exception)
                 {
-                    // MineSweeperConsole.WriteLine($"ERROR: {e.Message}");
+                    // ignored
                 }
             }
+            
+            var elapsedTime = DateTime.UtcNow - gameStart;
+            var score = Score.GenerateScore(TimeSpan.FromSeconds(elapsedTime.TotalSeconds), UserWon(), _user, _board);
+            _scoreManager.AddRow(score);
+            _scoreManager.PrintScore();
         }
 
         public void ProcessAction(Action action)
@@ -120,12 +122,11 @@ namespace MineSweeper.Game.GameManager
                     _boardManager.SelectCell(_board, selectCellAction.CellPosition);
 
                     // All the cells that are not mines has been selected. We WON.
-                    if (UserWin())
+                    if (UserWon())
                     {
                         _gameFinished = true;
                         _boardPrinter.PrintBoardWithCoords(_board);
                         MineSweeperConsole.WriteLine("YOU WON");
-                        AddRowToScoring();
                     }
                     
                     break;
@@ -135,25 +136,12 @@ namespace MineSweeper.Game.GameManager
             }
         }
 
-        protected virtual void AddRowToScoring()
-        {
-            _elapsedTime = DateTimeOffset.Now.ToUnixTimeMilliseconds() - _elapsedTime;
-            ScoringOptions options = new ScoringOptions(_board, _user, this);
-            _scoring.AddRow(options);
-            _scoring.PrintScoring();
-        }
-
-        public virtual string GetElapsedTime()
-        {
-            return $"{_elapsedTime/1000}s";
-        }
-
         public bool IsRunning()
         {
             return !_gameFinished;
         }
 
-        public virtual bool UserWin()
+        private bool UserWon()
         {
             return _board.Cells.Count(c => !c.IsMine && c.Status == CellStatus.VISIBLE) ==
                    _board.Cells.Length - _board.MineNumber;

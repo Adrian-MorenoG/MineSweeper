@@ -10,17 +10,17 @@ using MineSweeper.Game.User;
 
 namespace MineSweeper
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
+            var user = new User();
             var boardPrinter = new ConsoleBoardPrinter();
             var boardManager = new BoardManager();
             var boardGenerator = new BoardGenerator();
             var actionParser = new ActionParser();
-            var user = new User();
-            var scoring = new Scoring();
-            var gameManager = new GameManager(boardPrinter, boardManager, boardGenerator, actionParser, user, scoring);
+            var scoreManager = new ScoreManager();
+            var gameManager = new GameManager(boardPrinter, boardManager, boardGenerator, actionParser, scoreManager, user);
             var boardOptions = new BoardOptions(new Vector2(5, 5), 5);
             gameManager.Start(boardOptions);
         }

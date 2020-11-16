@@ -3,24 +3,32 @@ using MineSweeper.Game.Printer;
 
 namespace MineSweeper.Game.User
 {
-    public class User
+    public interface IUser
     {
-        protected string _name;
+        public void ReadUserName();
+        public string ReadUserAction();
 
-        public virtual void SetName()
+        public string GetName();
+    }
+    
+    public class User: IUser
+    {
+        protected string Name;
+
+        public void ReadUserName()
         {
-            MineSweeperConsole.WriteLine("Introduce tu nombre");
-            _name = MineSweeperConsole.ReadLine();
+            MineSweeperConsole.WriteLine("Put your name");
+            Name = MineSweeperConsole.ReadLine();
         }
 
-        public virtual string MakeAPlay()
+        public string ReadUserAction()
         {
             return MineSweeperConsole.ReadLine();
         }
         
         public string GetName()
         {
-            return _name;
+            return Name;
         }
     }
 }

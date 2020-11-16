@@ -1,16 +1,17 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2db06f92_002Dc314_002D481c_002Dba0f_002D1290428ef819/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestGameLoop1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;Or&gt;
-    &lt;TestAncestor&gt;
-      &lt;TestId&gt;NUnit3x::0F502741-2D14-4383-83F8-E007323742A5::.NETCoreApp,Version=v3.1::MineSweeper.Tests.IntegrationTests.GameManagerBlackBoxTest&lt;/TestId&gt;
-    &lt;/TestAncestor&gt;
-    &lt;ProjectFile&gt;0F502741-2D14-4383-83F8-E007323742A5/d:UnitTests/f:ActionParserTest.cs&lt;/ProjectFile&gt;
-    &lt;ProjectFile&gt;0F502741-2D14-4383-83F8-E007323742A5/d:UnitTests/f:BoardGeneratorTest.cs&lt;/ProjectFile&gt;
-    &lt;ProjectFile&gt;0F502741-2D14-4383-83F8-E007323742A5/d:UnitTests/f:BoardManagerTest.cs&lt;/ProjectFile&gt;
-    &lt;ProjectFile&gt;0F502741-2D14-4383-83F8-E007323742A5/d:UnitTests/f:ConsoleBoardPrinterTest.cs&lt;/ProjectFile&gt;
-    &lt;ProjectFile&gt;0F502741-2D14-4383-83F8-E007323742A5/d:UnitTests/f:ScoringTest.cs&lt;/ProjectFile&gt;
-    &lt;ProjectFile&gt;0F502741-2D14-4383-83F8-E007323742A5/d:UnitTests/f:UserTest.cs&lt;/ProjectFile&gt;
-  &lt;/Or&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2db06f92_002Dc314_002D481c_002Dba0f_002D1290428ef819/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestGameLoop1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Or&gt;&#xD;
+    &lt;TestAncestor&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::0F502741-2D14-4383-83F8-E007323742A5::.NETCoreApp,Version=v3.1::MineSweeper.Tests.IntegrationTests.GameManagerBlackBoxTest&lt;/TestId&gt;&#xD;
+    &lt;/TestAncestor&gt;&#xD;
+    &lt;ProjectFile&gt;0F502741-2D14-4383-83F8-E007323742A5/d:UnitTests/f:ActionParserTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;0F502741-2D14-4383-83F8-E007323742A5/d:UnitTests/f:BoardGeneratorTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;0F502741-2D14-4383-83F8-E007323742A5/d:UnitTests/f:BoardManagerTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;0F502741-2D14-4383-83F8-E007323742A5/d:UnitTests/f:ConsoleBoardPrinterTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;0F502741-2D14-4383-83F8-E007323742A5/d:UnitTests/f:ScoringTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;0F502741-2D14-4383-83F8-E007323742A5/d:UnitTests/f:UserTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;0F502741-2D14-4383-83F8-E007323742A5/d:UnitTests/f:ScoreManagerTest.cs&lt;/ProjectFile&gt;&#xD;
+  &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	</wpf:ResourceDictionary>

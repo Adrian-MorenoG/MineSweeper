@@ -1,4 +1,5 @@
-﻿    0  1  2  3  4 
+﻿Put your name
+    0  1  2  3  4 
    ---------------
 0| [█][█][█][█][█]
 1| [█][█][█][█][█]
@@ -119,4 +120,7 @@ S 4 3
 4| [░][░][░][1][F]
 
 YOU WON
-Melon [BoardSize: 5*5; #Mines: 3; Win: True; Time: 0s]
+
+
+::: SCOREBOARD :::
+Test User [BoardSize: 5*5; #Mines: 3; Win: True; Time: 0s]
