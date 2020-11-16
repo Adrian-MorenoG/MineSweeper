@@ -60,7 +60,7 @@ namespace MineSweeper.Tests.UnitTests
             scoreManager.AddRow(Score.GenerateScore(TimeSpan.FromSeconds(10), true, user, board));
             
             Assert.DoesNotThrow(() => scoreManager.PrintScore());
-            Assert.AreEqual($"Test User [BoardSize: 1*1; #Mines: 1; Win: False; Time: 0s]{Clr}\n" +
+            Assert.AreEqual($"\n\n::: SCOREBOARD :::{Clr}\nTest User [BoardSize: 1*1; #Mines: 1; Win: False; Time: 0s]{Clr}\n" +
                             $"Test User [BoardSize: 1*1; #Mines: 1; Win: True; Time: 10s]{Clr}\n",output.ToString());
         }
     }
