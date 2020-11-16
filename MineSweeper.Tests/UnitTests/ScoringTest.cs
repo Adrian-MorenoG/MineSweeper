@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Numerics;
 using MineSweeper.Game;
@@ -16,6 +17,9 @@ namespace MineSweeper.Tests.UnitTests
     [TestFixture]
     public class ScoringTest
     {
+        private static readonly bool IsWindows = Environment.OSVersion.Platform.Equals(PlatformID.Win32NT);
+        private static readonly string Clr = IsWindows ? "\r" : "";
+        
         private IBoardManager _boardManager;
         private IBoardPrinter _boardPrinter;
         private IBoardGenerator _boardGenerator;
@@ -121,10 +125,10 @@ namespace MineSweeper.Tests.UnitTests
             
             Assert.AreEqual(4, _scoring.Length());
             
-            string expected = "Melon [BoardSize: 3*3; #Mines: 2; Win: True; Time: 10s]\n" +
-                              "Melon [BoardSize: 1*1; #Mines: 1; Win: True; Time: 10s]\n" +
-                              "Melon [BoardSize: 5*4; #Mines: 9; Win: True; Time: 10s]\n" +
-                              "Melon [BoardSize: 33*1; #Mines: 8; Win: True; Time: 10s]\n";
+            string expected = $"Melon [BoardSize: 3*3; #Mines: 2; Win: True; Time: 10s]{Clr}\n" +
+                              $"Melon [BoardSize: 1*1; #Mines: 1; Win: True; Time: 10s]{Clr}\n" +
+                              $"Melon [BoardSize: 5*4; #Mines: 9; Win: True; Time: 10s]{Clr}\n" +
+                              $"Melon [BoardSize: 33*1; #Mines: 8; Win: True; Time: 10s]{Clr}\n";
             
             var output = new StringWriter();
             MineSweeperConsole.SetConsoleWrapper(new MockConsole(new StringReader(""), output));
@@ -134,8 +138,8 @@ namespace MineSweeper.Tests.UnitTests
             _scoring.DeleteRow(1);
             _scoring.DeleteRow(0);
             
-            expected = "Melon [BoardSize: 5*4; #Mines: 9; Win: True; Time: 10s]\n" +
-                       "Melon [BoardSize: 33*1; #Mines: 8; Win: True; Time: 10s]\n";
+            expected = $"Melon [BoardSize: 5*4; #Mines: 9; Win: True; Time: 10s]{Clr}\n" +
+                       $"Melon [BoardSize: 33*1; #Mines: 8; Win: True; Time: 10s]{Clr}\n";
             
             output = new StringWriter();
             MineSweeperConsole.SetConsoleWrapper(new MockConsole(new StringReader(""), output));
