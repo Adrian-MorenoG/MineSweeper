@@ -35,7 +35,10 @@ namespace MineSweeper.Tests.Mocks
 
         protected override void AddRowToScoring()
         {
-            // Do nothing
+            var user = new MockUser();
+            user.SetName();
+            ScoringOptions opt = new ScoringOptions(_board, user, this);
+            new MockScoring().AddRow(opt);
         }
 
         public MockGameManager(IBoardPrinter boardPrinter, IBoardManager boardManager, IBoardGenerator boardGenerator, IActionParser actionParser, User user, Scoring scoring) : base(boardPrinter, boardManager, boardGenerator, actionParser, user, scoring)
