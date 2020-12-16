@@ -1,0 +1,30 @@
+﻿Put your name
+    0  1  2  3  4 
+   ---------------
+0| [█][█][█][█][█]
+1| [█][█][█][█][█]
+2| [█][█][█][█][█]
+3| [█][█][█][█][█]
+4| [█][█][█][█][█]
+
+--------------------------
+SELECT AN OPTION:
+S X Y - Select a cell in the x,y position
+F X Y - Flag a cell in the x,y position
+E - Exit the game
+
+
+S 0 1
+    0  1  2  3  4 
+   ---------------
+0| [█][█][█][█][█]
+1| [*][█][█][█][█]
+2| [█][█][█][█][*]
+3| [█][█][█][█][█]
+4| [█][█][█][█][*]
+
+YOU LOOSE
+
+
+::: SCOREBOARD :::
+Test User [BoardSize: 5*5; #Mines: 3; Win: False; Time: 0s]

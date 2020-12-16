@@ -1,0 +1,85 @@
+﻿Put your name
+    0  1  2  3  4 
+   ---------------
+0| [█][█][█][█][█]
+1| [█][█][█][█][█]
+2| [█][█][█][█][█]
+3| [█][█][█][█][█]
+4| [█][█][█][█][█]
+
+--------------------------
+SELECT AN OPTION:
+S X Y - Select a cell in the x,y position
+F X Y - Flag a cell in the x,y position
+E - Exit the game
+
+
+S 0 0
+    0  1  2  3  4 
+   ---------------
+0| [1][█][█][█][█]
+1| [█][█][█][█][█]
+2| [█][█][█][█][█]
+3| [█][█][█][█][█]
+4| [█][█][█][█][█]
+
+--------------------------
+SELECT AN OPTION:
+S X Y - Select a cell in the x,y position
+F X Y - Flag a cell in the x,y position
+E - Exit the game
+
+
+S 1 0
+    0  1  2  3  4 
+   ---------------
+0| [1][1][█][█][█]
+1| [█][█][█][█][█]
+2| [█][█][█][█][█]
+3| [█][█][█][█][█]
+4| [█][█][█][█][█]
+
+--------------------------
+SELECT AN OPTION:
+S X Y - Select a cell in the x,y position
+F X Y - Flag a cell in the x,y position
+E - Exit the game
+
+
+S 2 0
+    0  1  2  3  4 
+   ---------------
+0| [1][1][░][░][░]
+1| [█][1][░][1][1]
+2| [1][1][░][1][█]
+3| [░][░][░][2][█]
+4| [░][░][░][1][█]
+
+--------------------------
+SELECT AN OPTION:
+S X Y - Select a cell in the x,y position
+F X Y - Flag a cell in the x,y position
+E - Exit the game
+
+
+F 0 1
+    0  1  2  3  4 
+   ---------------
+0| [1][1][░][░][░]
+1| [F][1][░][1][1]
+2| [1][1][░][1][█]
+3| [░][░][░][2][█]
+4| [░][░][░][1][█]
+
+--------------------------
+SELECT AN OPTION:
+S X Y - Select a cell in the x,y position
+F X Y - Flag a cell in the x,y position
+E - Exit the game
+
+
+E
+
+
+::: SCOREBOARD :::
+Test User [BoardSize: 5*5; #Mines: 3; Win: False; Time: 0s]
